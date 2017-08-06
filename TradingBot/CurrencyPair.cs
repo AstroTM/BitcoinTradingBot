@@ -4,8 +4,8 @@ namespace TradingBot
 {
 	public class CurrencyPair
 	{
-		public int currency1;
-		public int currency2;
+		public int Currency1;
+		public int Currency2;
 
 		/**
 		 * 0: USD
@@ -15,35 +15,45 @@ namespace TradingBot
 
 		public CurrencyPair(int currency1, int currency2)
 		{
-			this.currency1 = currency1;
-			this.currency2 = currency2;
+			this.Currency1 = currency1;
+			this.Currency2 = currency2;
 		}
 
 		public string GetBitfinexCurrencyPair()
 		{
-			switch (currency1)
+			switch (Currency1)
 			{
 				case 0:
-					switch (currency2)
+					switch (Currency2)
 					{
 						case 1:
 							return "tBTCUSD";
-							break;
 						case 2:
 							return "tETHUSD";
-							break;
 					}
 					break;
 				case 2:
-					switch (currency2)
+					switch (Currency2)
 					{
 						case 1:
 							return "tETHBTC";
-							break;
 					}
 					break;
 			}
-			return "NotDefined";
+
+			throw new UnknownCurrencyPairException(Currency1, Currency2);
+		}
+	}
+
+	class UnknownCurrencyPairException : Exception
+	{
+		public int Currency1;
+		public int Currency2;
+
+		public UnknownCurrencyPairException(int currency1, int currency2)
+		{
+			this.Currency1 = currency1;
+			this.Currency2 = currency2;
 		}
 	}
 }
