@@ -10,6 +10,7 @@ namespace TradingBot
 	{
 		static void Main(string[] args)
 		{
+			ApiConnector APC = new ApiConnector();
 		}
 	}
 }
