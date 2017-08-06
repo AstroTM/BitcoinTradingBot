@@ -1,4 +1,4 @@
-﻿namespace TradingBot
+﻿namespace TradingLib
 {
 	public class TickerResult
 	{

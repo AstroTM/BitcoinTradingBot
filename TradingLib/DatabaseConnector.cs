@@ -1,6 +1,6 @@
-﻿namespace TradingBot
+﻿namespace TradingLib
 {
-	internal class DatabaseConnector
+	public class DatabaseConnector
 	{
 		public DatabaseConnector()
 		{

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TradingBot
+namespace TradingLib
 {
 	public class CurrencyPair
 	{

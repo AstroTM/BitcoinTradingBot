@@ -3,7 +3,7 @@ using System.Net;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace TradingBot
+namespace TradingLib
 {
 	public class ApiReader
 	{
