@@ -30,14 +30,6 @@ namespace TradingLib.Tests
 		}
 
 		[TestMethod()]
-		[ExpectedException(typeof(UnknownCurrencyPairException), "Currency pair (1, 1) unknown.")]
-		public void ThrowsCurrencyPairException()
-		{
-			CurrencyPair cp = new CurrencyPair(1, 1);
-			cp.GetBitfinexCurrencyPair();
-		}
-
-		[TestMethod()]
 		public void DownloadStringTest()
 		{
 			Assert.AreEqual(ApiReader.DownloadString("https://example.com/"), 
