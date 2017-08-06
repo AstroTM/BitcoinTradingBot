@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace TradingLib.Tests
 {
 	[TestClass()]
-	public class ApiConnectorTests
+	public class ApiReaderTests
 	{
 		ApiReader APC = new ApiReader();
 
