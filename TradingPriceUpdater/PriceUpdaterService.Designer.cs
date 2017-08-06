@@ -1,6 +1,6 @@
 ﻿namespace TradingPriceUpdater
 {
-	partial class Service1
+	partial class PriceUpdaterService
 	{
 		/// <summary> 
 		/// Required designer variable.
