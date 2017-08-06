@@ -19,7 +19,7 @@ namespace TradingBot
 			this.currency2 = currency2;
 		}
 
-		public string getBitfinexCurrencyPair()
+		public string GetBitfinexCurrencyPair()
 		{
 			switch (currency1)
 			{
@@ -43,6 +43,7 @@ namespace TradingBot
 					}
 					break;
 			}
+			return "NotDefined";
 		}
 	}
 }
