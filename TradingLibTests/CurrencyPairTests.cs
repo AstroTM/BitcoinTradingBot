@@ -12,15 +12,10 @@ namespace TradingLib.Tests
 	public class CurrencyPairTests
 	{
 		[TestMethod()]
-		public void CurrencyPairTest()
-		{
-			Assert.Fail();
-		}
-
-		[TestMethod()]
 		public void GetBitfinexCurrencyPairTest()
 		{
-			Assert.Fail();
+			CurrencyPair cp = new CurrencyPair(0, 1);
+			Assert.AreEqual(cp.GetBitfinexCurrencyPair(), "tBTCUSD");
 		}
 
 		[TestMethod()]
