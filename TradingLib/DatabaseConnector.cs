@@ -7,7 +7,7 @@ namespace TradingLib
 	public class DatabaseConnector
 	{
 		SQLiteConnection connection = new SQLiteConnection(
-			@"Data Source=C:\Users\matth\OneDrive\Documents\Visual Studio 2017\Projects\TradingBot\priceData.db;");
+			@"Data Source=C:\Users\matth\OneDrive\Documents\Visual Studio 2017\Projects\TradingBot\priceData.db;version=3;new=False;datetimeformat=CurrentCulture");
 
 		public DatabaseConnector()
 		{
@@ -37,11 +37,13 @@ namespace TradingLib
 			SQLiteDataReader reader = command.ExecuteReader();
 
 			while (reader.Read())
-				output.Add(new DatabaseRow(
-					Convert.ToInt32(reader["date"]),
-					Convert.ToDouble(reader["price"]),
-					Convert.ToDouble(reader["volBid"]),
-					Convert.ToDouble(reader["volAsk"])));
+			{
+				double date = reader.GetDouble(0);
+				double price = reader.GetDouble(1);
+				double volBid = reader.GetDouble(2);
+				double volAsk = reader.GetDouble(3);
+				output.Add(new DatabaseRow(date, price, volBid, volAsk));
+			}
 
 			return output;
 		}

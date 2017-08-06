@@ -57,6 +57,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="ApiReaderTests.cs" />
+    <Compile Include="DatabaseConnectorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
