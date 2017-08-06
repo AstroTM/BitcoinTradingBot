@@ -16,7 +16,20 @@ namespace TradingBot.Tests
 		[TestMethod()]
 		public void getPriceTest()
 		{
-			Assert.Fail();
+			TickerResult TR = APC.GetTickerResult(new CurrencyPair(0, 1));
+			Assert.AreNotEqual(TR.ask, null);
+			Assert.AreNotEqual(TR.askSize, null);
+			Assert.AreNotEqual(TR.ask, null);
+			Assert.AreNotEqual(TR.ask, null);
+			Assert.AreNotEqual(TR.ask, null);
+		}
+
+		[TestMethod()]
+		[ExpectedException(typeof(UnknownCurrencyPairException), "Currency pair (1, 1) unknown.")]
+		public void throwsCurrencyPairException()
+		{
+			CurrencyPair cp = new CurrencyPair(1, 1);
+			cp.GetBitfinexCurrencyPair();
 		}
 
 		[TestMethod()]
