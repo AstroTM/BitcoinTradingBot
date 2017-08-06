@@ -19,9 +19,14 @@ namespace TradingBot.Tests
 			TickerResult TR = APC.GetTickerResult(new CurrencyPair(0, 1));
 			Assert.AreNotEqual(TR.ask, null);
 			Assert.AreNotEqual(TR.askSize, null);
-			Assert.AreNotEqual(TR.ask, null);
-			Assert.AreNotEqual(TR.ask, null);
-			Assert.AreNotEqual(TR.ask, null);
+			Assert.AreNotEqual(TR.bid, null);
+			Assert.AreNotEqual(TR.bidSize, null);
+			Assert.AreNotEqual(TR.dailyChange, null);
+			Assert.AreNotEqual(TR.dailyChangePerc, null);
+			Assert.AreNotEqual(TR.lastPrice, null);
+			Assert.AreNotEqual(TR.volume, null);
+			Assert.AreNotEqual(TR.high, null);
+			Assert.AreNotEqual(TR.low, null);
 		}
 
 		[TestMethod()]
