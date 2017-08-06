@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.SQLite;
 
 namespace TradingLib
@@ -13,16 +14,36 @@ namespace TradingLib
 			connection.Open();
 		}
 
-		public void InsertIntoDatabase(int date, double price, double volBid, double volAsk)
+		public void InsertIntoDatabase(DatabaseRow input)
 		{
 			string sql = "INSERT INTO prices VALUES (" + 
-				Convert.ToString(date) + ", " + 
-				Convert.ToString(price) + ", " + 
-				Convert.ToString(volBid) + ", " + 
-				Convert.ToString(volAsk) + ");";
+				Convert.ToString(input.date) + ", " + 
+				Convert.ToString(input.price) + ", " + 
+				Convert.ToString(input.volBid) + ", " + 
+				Convert.ToString(input.volAsk) + ");";
 
 			SQLiteCommand command = new SQLiteCommand(sql, connection);
 			command.ExecuteNonQuery();
+		}
+
+		public List<DatabaseRow> SelectAllFromDatabase()
+		{
+			List<DatabaseRow> output = new List<DatabaseRow>();
+
+			string sql = "SELECT * FROM prices;";
+
+			SQLiteCommand command = new SQLiteCommand(sql, connection);
+
+			SQLiteDataReader reader = command.ExecuteReader();
+
+			while (reader.Read())
+				output.Add(new DatabaseRow(
+					Convert.ToInt32(reader["date"]),
+					Convert.ToDouble(reader["price"]),
+					Convert.ToDouble(reader["volBid"]),
+					Convert.ToDouble(reader["volAsk"])));
+
+			return output;
 		}
 	}
 }
