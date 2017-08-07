@@ -28,6 +28,11 @@ namespace TradingPriceUpdater.Tests
 			                                 new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 			int timeOfInsert = System.Convert.ToInt32(timeDifference.TotalSeconds);
 
+			PUS.APR = new ApiReader(); // Initialises ApiReader
+			PUS.DBC = new DatabaseConnector(); // Initialises DatabaseConnector
+
+			PUS.currency = new CurrencyPair(2, 1); // Creates new currency pair of ETH/BTC
+
 			PUS.TimerElapsed(null, null); // Runs TimerElapsed
 
 			List<DatabaseRow> values = PUS.DBC.SelectAllFromDatabase(); // Selects every row from the database
@@ -36,7 +41,7 @@ namespace TradingPriceUpdater.Tests
 
 			foreach (DatabaseRow row in values) // Iterates through every row
 			{
-				if (row.date == PUS.LastInsert) // If the row is the values previously inserted
+				if (Convert.ToInt32(row.date) == PUS.LastInsert) // If the row is the values previously inserted
 				{
 					hasBeenFound = true; // Test is passed
 					string sql = "DELETE FROM prices WHERE date=" + PUS.LastInsert + ";"; // Create sql to delete the row

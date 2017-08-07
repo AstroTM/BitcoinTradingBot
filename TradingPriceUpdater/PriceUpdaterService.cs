@@ -15,9 +15,11 @@ namespace TradingPriceUpdater
 	public partial class PriceUpdaterService : ServiceBase
 	{
 		private Timer _timer;
-		private ApiReader APR;
-		private DatabaseConnector DBC;
-		private CurrencyPair currency;
+
+		public CurrencyPair currency;
+		public ApiReader APR;
+		public DatabaseConnector DBC;
+		public int LastInsert;
 
 		public PriceUpdaterService()
 		{
@@ -44,7 +46,7 @@ namespace TradingPriceUpdater
 		/// <summary>
 		/// Run every 10 seconds, gets data from the API and puts it into the database.
 		/// </summary>
-		public void TimerElapsed(object sender, System.Timers.ElapsedEventArgs e)
+		public void TimerElapsed(object sender, ElapsedEventArgs e)
 		{
 			TickerResult ticker = APR.GetTickerResult(currency); // Gets the ticker for the specified currency
 		}
