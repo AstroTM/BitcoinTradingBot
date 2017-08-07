@@ -22,6 +22,30 @@ namespace TradingLib
 			return result;
 		}
 
+		public TickerHistoryResult GetTickerHistoryResult(CurrencyPair currency)
+		{
+			string rawData = DownloadString("https://api.bitfinex.com/v2/trades/" + currency.GetBitfinexCurrencyPair() +
+			                                "/hist");
+
+			double[,] array = JsonConvert.DeserializeObject<double[,]>(rawData);
+
+			TickerHistoryResult result = TickerHistoryArrayToTickerHistoryResult(array);
+
+			return result;
+		}
+
+		TickerHistoryResult TickerHistoryArrayToTickerHistoryResult(double[,] input)
+		{
+			TickerHistoryResult THR = new TickerHistoryResult();
+
+			for (int i = 0; i < input.Length/4; i++)
+			{
+				THR.trades.Add(new HistoricalTrade(Convert.ToUInt32(input[i, 0]), Convert.ToUInt32(input[i, 1] / 1000), input[i, 2], input[i, 2]));
+			}
+
+			return THR;
+		}
+
 		TickerResult TickerArrayToTickerResult(double[] input)
 		{
 			TickerResult result = new TickerResult();

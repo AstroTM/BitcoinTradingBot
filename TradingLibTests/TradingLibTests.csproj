@@ -64,6 +64,7 @@
     <Compile Include="ApiReaderTests.cs" />
     <Compile Include="CurrencyPairTests.cs" />
     <Compile Include="DatabaseConnectorTests.cs" />
+    <Compile Include="HistoricalTradeTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
