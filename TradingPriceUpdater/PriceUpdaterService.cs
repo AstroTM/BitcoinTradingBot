@@ -17,6 +17,7 @@ namespace TradingPriceUpdater
 		private Timer _timer;
 		private ApiReader apiRead;
 		private DatabaseConnector databaseConnect;
+		private CurrencyPair currency;
 
 		public PriceUpdaterService()
 		{
@@ -25,16 +26,19 @@ namespace TradingPriceUpdater
 
 		protected override void OnStart(string[] args)
 		{
-			_timer = new Timer(10 * 1000); // every 10 seconds
-			_timer.Elapsed += new System.Timers.ElapsedEventHandler(TimerElapsed);
-			_timer.Start();
-			apiRead = new ApiReader();
-			databaseConnect = new DatabaseConnector();
+			apiRead = new ApiReader(); // Initialises ApiReader
+			databaseConnect = new DatabaseConnector(); // Initialises DatabaseConnector
+
+			currency = new CurrencyPair(2, 1); // Creates new currency pair of ETH/BTC
+
+			_timer = new Timer(10 * 1000); // Create timer to run every 10 seconds
+			_timer.Elapsed += new System.Timers.ElapsedEventHandler(TimerElapsed); // Sets method to be run when the timer is elapsed
+			_timer.Start(); // Starts the timer
 		}
 
 		protected override void OnStop()
 		{
-			databaseConnect.CloseConnection();
+			databaseConnect.CloseConnection(); // Closes the connection
 		}
 
 		/// <summary>
@@ -42,10 +46,7 @@ namespace TradingPriceUpdater
 		/// </summary>
 		public void TimerElapsed(object sender, System.Timers.ElapsedEventArgs e)
 		{
-			CurrencyPair currency = new CurrencyPair(2, 1);
-
-			TickerResult ticker = apiRead.GetTickerResult(currency);
-			
+			TickerResult ticker = apiRead.GetTickerResult(currency); // Gets the ticker for the specified currency
 		}
 	}
 }
