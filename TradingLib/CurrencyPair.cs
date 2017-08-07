@@ -48,6 +48,7 @@ namespace TradingLib
 					break;
 			}
 
+			// If it doesn't understand the currency pair given.
 			throw new UnknownCurrencyPairException(
 				"Currency pair (" + Currency1 + ", " + Currency2 + ") on Bitfinex unknown.");
 		}
