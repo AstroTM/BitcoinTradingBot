@@ -6,7 +6,7 @@ namespace TradingLib
 {
 	public class DatabaseConnector
 	{
-		SQLiteConnection connection = new SQLiteConnection(
+		public SQLiteConnection connection = new SQLiteConnection(
 			@"Data Source=C:\Users\matth\OneDrive\Documents\Visual Studio 2017\Projects\TradingBot\priceData.db;version=3;new=False;datetimeformat=CurrentCulture");
 
 		public DatabaseConnector()
