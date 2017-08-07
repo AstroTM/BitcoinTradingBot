@@ -15,9 +15,11 @@ namespace TradingPriceUpdater
 	public partial class PriceUpdaterService : ServiceBase
 	{
 		private Timer _timer;
-		private ApiReader APR;
-		private DatabaseConnector DBC;
-		private CurrencyPair currency;
+
+		public CurrencyPair currency;
+		public ApiReader APR;
+		public DatabaseConnector DBC;
+		public int LastInsert;
 
 		public PriceUpdaterService()
 		{
@@ -44,9 +46,35 @@ namespace TradingPriceUpdater
 		/// <summary>
 		/// Run every 10 seconds, gets data from the API and puts it into the database.
 		/// </summary>
-		public void TimerElapsed(object sender, System.Timers.ElapsedEventArgs e)
+		public void TimerElapsed(object sender, ElapsedEventArgs e)
 		{
+			LastInsert = GetUnixTime();
+
 			TickerResult ticker = APR.GetTickerResult(currency); // Gets the ticker for the specified currency
+			TradeHistoryResult history = APR.GetTradeHistoryResult(currency); // Gets the trade history for the specified currency
+
+			double volAsk = 0;
+			double volBid = 0;
+
+			foreach (HistoricalTrade trade in history.trades)
+			{
+				if (trade.IsBid)
+					volBid += trade.Amount;
+				else
+					volAsk += trade.Amount;
+			}
+
+			DatabaseRow row = new DatabaseRow(LastInsert, ticker.lastPrice, volBid, volAsk);
+			DBC.InsertIntoDatabase(row);
+		}
+
+		public int GetUnixTime()
+		{
+			TimeSpan timeDifference = DateTime.UtcNow -
+			                          new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+			int unixTime = System.Convert.ToInt32(timeDifference.TotalSeconds);
+
+			return unixTime;
 		}
 	}
 }
