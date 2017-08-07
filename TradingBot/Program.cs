@@ -9,10 +9,16 @@ namespace TradingBot
 {
 	class Program
 	{
+		private static ApiReader APR;
+		private static DatabaseConnector DBC;
+
+		/// <summary>
+		/// The main entry point for the application.
+		/// </summary>
 		static void Main(string[] args)
 		{
-			ApiReader APC = new ApiReader();
-			DatabaseConnector DBC = new DatabaseConnector();
+			APR = new ApiReader(); // Initialises ApiReader
+			DBC = new DatabaseConnector(); // Initialises DatabaseConnector
 		}
 	}
 }

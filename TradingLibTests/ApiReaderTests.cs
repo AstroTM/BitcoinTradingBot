@@ -8,16 +8,24 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace TradingLib.Tests
-{
+{       
+	/// <summary>
+	/// Tests class ApiReader
+	/// </summary>
 	[TestClass()]
 	public class ApiReaderTests
 	{
-		ApiReader APC = new ApiReader();
+		ApiReader APR = new ApiReader(); // Initialise ApiReader for tests
 
+		/// <summary>
+		/// Checks GetPrice() returns a TickerResult with values
+		/// </summary>
 		[TestMethod()]
 		public void GetPriceTest()
 		{
-			TickerResult TR = APC.GetTickerResult(new CurrencyPair(0, 1));
+			TickerResult TR = APR.GetTickerResult(new CurrencyPair(0, 1)); // Get result for currency pair USD/BTC
+
+			// Check each variable in TickerResult has a value
 			Assert.AreNotEqual(TR.ask, null);
 			Assert.AreNotEqual(TR.askSize, null);
 			Assert.AreNotEqual(TR.bid, null);
@@ -30,28 +38,36 @@ namespace TradingLib.Tests
 			Assert.AreNotEqual(TR.low, null);
 		}
 
+		/// <summary>
+		/// Checks GetHistory() returns a TradeHistoryResult with individual values equal to the sumBid and sumAsk values.
+		/// </summary>
 		[TestMethod()]
 		public void GetHistoryTest()
 		{
-			TradeHistoryResult THR = APC.GetTradeHistoryResult(new CurrencyPair(0, 1));
+			TradeHistoryResult THR = APR.GetTradeHistoryResult(new CurrencyPair(0, 1)); // Get result for currency pair USD/BTC
+
 			double sumBid = 0;
 			double sumAsk = 0;
-			foreach (HistoricalTrade trade in THR.trades)
+
+			foreach (HistoricalTrade trade in THR.trades) // Iterate through each trade
 			{
-				if (trade.IsBid)
+				if (trade.IsBid) // If it's a bid
 				{
-					sumBid += trade.Amount;
+					sumBid += trade.Amount; // Add the amount to sumBid
 				}
-				else
+				else // Else it's an ask
 				{
-					sumAsk += trade.Amount;
+					sumAsk += trade.Amount; // Add the amount to sumAsk
 				}
 			}
-
-			Assert.AreEqual(THR.sumAsk(), sumAsk);
-			Assert.AreEqual(THR.sumBid(), sumBid);
+			
+			Assert.AreEqual(THR.sumAsk(), sumAsk); // Check calculated ask is the same as sumAsk
+			Assert.AreEqual(THR.sumBid(), sumBid); // Check calculated bid is the same as sumBid
 		}
 
+		/// <summary>
+		/// Checks DownloadString functions correctly by downloading https://example.com/
+		/// </summary>
 		[TestMethod()]
 		public void DownloadStringTest()
 		{

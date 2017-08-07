@@ -18,15 +18,15 @@
 			this.Id = id;
 			this.Time = time;
 			this.Price = price;
-			if (amount < 0)
+			if (amount < 0) // If negative
 			{
-				IsBid = false;
-				this.Amount = -amount;
+				IsBid = false; // It's an ask so set IsBid to false
+				this.Amount = -amount; // amount is negative, so -amount to make it positive
 			}
-			else
+			else // Therefore positive
 			{
-				IsBid = true;
-				this.Amount = amount;
+				IsBid = true; // It's a bid so set IsBid to true
+				this.Amount = amount; // Set this.Amount
 			}
 		}
 	}
