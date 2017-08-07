@@ -1,17 +1,22 @@
 ﻿namespace TradingLib
 {
+	/// <summary>
+	/// Holds the data of a single historical trade from the API.
+	/// </summary>
 	public class HistoricalTrade
 	{
 		public uint Id;
-		public uint Mts;
+		/// <summary> Timestamp for the trade in seconds from the Epoch. </summary>
+		public uint Time;
 		public double Amount;
 		public double Price;
+		/// <summary> True if the trade is a bid, false if the trade is an ask. </summary>
 		public bool IsBid;
 
-		public HistoricalTrade(uint id, uint mts, double amount, double price)
+		public HistoricalTrade(uint id, uint time, double amount, double price)
 		{
 			this.Id = id;
-			this.Mts = mts;
+			this.Time = time;
 			this.Price = price;
 			if (amount < 0)
 			{
