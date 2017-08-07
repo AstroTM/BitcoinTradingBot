@@ -48,9 +48,24 @@ namespace TradingPriceUpdater
 		/// </summary>
 		public void TimerElapsed(object sender, ElapsedEventArgs e)
 		{
-			TickerResult ticker = APR.GetTickerResult(currency); // Gets the ticker for the specified currency
-
 			LastInsert = GetUnixTime();
+
+			TickerResult ticker = APR.GetTickerResult(currency); // Gets the ticker for the specified currency
+			TradeHistoryResult history = APR.GetTradeHistoryResult(currency); // Gets the trade history for the specified currency
+
+			double volAsk = 0;
+			double volBid = 0;
+
+			foreach (HistoricalTrade trade in history.trades)
+			{
+				if (trade.IsBid)
+					volBid += trade.Amount;
+				else
+					volAsk += trade.Amount;
+			}
+
+			DatabaseRow row = new DatabaseRow(LastInsert, ticker.lastPrice, volBid, volAsk);
+			DBC.InsertIntoDatabase(row);
 		}
 
 		public int GetUnixTime()
