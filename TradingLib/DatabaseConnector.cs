@@ -4,6 +4,9 @@ using System.Data.SQLite;
 
 namespace TradingLib
 {
+	/// <summary>
+	/// Connects to the SqLite database and allows operations to be carried out on it.
+	/// </summary>
 	public class DatabaseConnector
 	{
 		public SQLiteConnection connection = new SQLiteConnection(
@@ -14,6 +17,10 @@ namespace TradingLib
 			connection.Open();
 		}
 
+		/// <summary>
+		/// Inserts a row into price database
+		/// </summary>
+		/// <param name="input">Row to be inserted</param>
 		public void InsertIntoDatabase(DatabaseRow input)
 		{
 			string sql = "INSERT INTO prices VALUES (" + 
@@ -26,6 +33,10 @@ namespace TradingLib
 			command.ExecuteNonQuery();
 		}
 
+		/// <summary>
+		/// Selects every row from the price database
+		/// </summary>
+		/// <returns>List of every row in the database</returns>
 		public List<DatabaseRow> SelectAllFromDatabase()
 		{
 			List<DatabaseRow> output = new List<DatabaseRow>();
@@ -48,6 +59,9 @@ namespace TradingLib
 			return output;
 		}
 
+		/// <summary>
+		/// Closes the connection to the database
+		/// </summary>
 		public void CloseConnection()
 		{
 			connection.Close();

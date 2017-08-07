@@ -5,13 +5,21 @@ using Newtonsoft.Json.Linq;
 
 namespace TradingLib
 {
+	/// <summary>
+	/// Allows readonly operations to be carried out on the Bitfinex API.
+	/// </summary>
 	public class ApiReader
 	{
 		public ApiReader()
 		{
-			// Not required
+			// Empty for now
 		}
 
+		/// <summary>
+		/// Gets ticker info for currency pair from the API.
+		/// </summary>
+		/// <param name="currency">Currency pair to get data about</param>
+		/// <returns>TickerResult containing ticker data for specified currency on Bitfinex</returns>
 		public TickerResult GetTickerResult(CurrencyPair currency)
 		{
 			string rawData = DownloadString("https://api.bitfinex.com/v2/ticker/" + currency.GetBitfinexCurrencyPair());
@@ -23,6 +31,11 @@ namespace TradingLib
 			return result;
 		}
 
+		/// <summary>
+		/// Gets ticker info for currency pair from the API.
+		/// </summary>
+		/// <param name="currency">Currency pair to get data about</param>
+		/// <returns>TradeHistoryResult containing last 120(?) trades</returns>
 		public TradeHistoryResult GetTradeHistoryResult(CurrencyPair currency)
 		{
 			string rawData = DownloadString("https://api.bitfinex.com/v2/trades/" + currency.GetBitfinexCurrencyPair() +
@@ -65,6 +78,12 @@ namespace TradingLib
 			return result;
 		}
 
+
+		/// <summary>
+		/// Downloads a web page as a string
+		/// </summary>
+		/// <param name="address">Address to get data from</param>
+		/// <returns>Web page as string</returns>
 		public static string DownloadString(string address)
 		{
 			WebClient client = new WebClient();

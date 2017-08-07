@@ -1,5 +1,8 @@
 ﻿namespace TradingLib
 {
+	/// <summary>
+	/// Holds the data from a ticker call on the API
+	/// </summary>
 	public class TickerResult
 	{
 		public double bid;
