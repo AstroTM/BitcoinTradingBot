@@ -8,7 +8,10 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace TradingLib.Tests
-{
+{       
+	/// <summary>
+	/// Tests class ApiReader
+	/// </summary>
 	[TestClass()]
 	public class ApiReaderTests
 	{
