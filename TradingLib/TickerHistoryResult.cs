@@ -9,12 +9,28 @@ namespace TradingLib
 
 		public double sumAsk()
 		{
-			throw new System.NotImplementedException();
+			double output = 0;
+
+			foreach (HistoricalTrade trade in trades)
+			{
+				if (!trade.IsBid)
+					output += trade.Amount;
+			}
+
+			return output;
 		}
 
 		public double sumBid()
 		{
-			throw new System.NotImplementedException();
+			double output = 0;
+
+			foreach (HistoricalTrade trade in trades)
+			{
+				if (trade.IsBid)
+					output += trade.Amount;
+			}
+
+			return output;
 		}
 	}
 }
