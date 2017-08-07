@@ -37,6 +37,9 @@ namespace TradingPriceUpdater
 			databaseConnect.CloseConnection();
 		}
 
+		/// <summary>
+		/// Run every 10 seconds, gets data from the API and puts it into the database.
+		/// </summary>
 		public void TimerElapsed(object sender, System.Timers.ElapsedEventArgs e)
 		{
 			CurrencyPair currency = new CurrencyPair(2, 1);
