@@ -14,12 +14,13 @@ namespace TradingPriceUpdater
 		/// </summary>
 		static void Main()
 		{
+			// Creates instance of PriceUpdaterService
 			ServiceBase[] ServicesToRun;
 			ServicesToRun = new ServiceBase[]
 			{
 				new PriceUpdaterService()
 			};
-			ServiceBase.Run(ServicesToRun);
+			ServiceBase.Run(ServicesToRun); // Runs services
 		}
 	}
 }
