@@ -38,7 +38,10 @@ namespace TradingPriceUpdater
 
 		public void TimerElapsed(object sender, System.Timers.ElapsedEventArgs e)
 		{
+			CurrencyPair currency = new CurrencyPair(2, 1);
 
+			TickerResult ticker = apiRead.GetTickerResult(currency);
+			
 		}
 	}
 }
