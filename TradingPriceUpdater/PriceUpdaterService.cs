@@ -34,6 +34,7 @@ namespace TradingPriceUpdater
 
 		protected override void OnStop()
 		{
+			databaseConnect.CloseConnection();
 		}
 
 		public void TimerElapsed(object sender, System.Timers.ElapsedEventArgs e)

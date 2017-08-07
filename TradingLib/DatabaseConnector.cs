@@ -47,5 +47,10 @@ namespace TradingLib
 
 			return output;
 		}
+
+		public void CloseConnection()
+		{
+			connection.Close();
+		}
 	}
 }
