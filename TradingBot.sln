@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradingLibTests", "TradingL
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradingLib", "TradingLib\TradingLib.csproj", "{57F8EF23-4E67-4230-9534-24DC234186C3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradingPriceUpdater", "TradingPriceUpdater\TradingPriceUpdater.csproj", "{32CB78A0-08A3-4D25-B1F3-B9E47AE48C04}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{57F8EF23-4E67-4230-9534-24DC234186C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{57F8EF23-4E67-4230-9534-24DC234186C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{57F8EF23-4E67-4230-9534-24DC234186C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32CB78A0-08A3-4D25-B1F3-B9E47AE48C04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32CB78A0-08A3-4D25-B1F3-B9E47AE48C04}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32CB78A0-08A3-4D25-B1F3-B9E47AE48C04}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32CB78A0-08A3-4D25-B1F3-B9E47AE48C04}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
