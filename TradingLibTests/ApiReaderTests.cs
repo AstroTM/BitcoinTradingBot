@@ -2,6 +2,7 @@
 using TradingLib;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,6 +28,28 @@ namespace TradingLib.Tests
 			Assert.AreNotEqual(TR.volume, null);
 			Assert.AreNotEqual(TR.high, null);
 			Assert.AreNotEqual(TR.low, null);
+		}
+
+		[TestMethod()]
+		public void GetHistoryTest()
+		{
+			TickerHistoryResult THR = APC.GetTickerHistoryResult(new CurrencyPair(0, 1));
+			double sumBid = 0;
+			double sumAsk = 0;
+			foreach (HistoricalTrade trade in THR.trades)
+			{
+				if (trade.IsBid)
+				{
+					sumBid += trade.Amount;
+				}
+				else
+				{
+					sumAsk += trade.Amount;
+				}
+			}
+
+			Assert.AreEqual(THR.sumAsk(), sumAsk);
+			Assert.AreEqual(THR.sumBid(), sumBid);
 		}
 
 		[TestMethod()]
