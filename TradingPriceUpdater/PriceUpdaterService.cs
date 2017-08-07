@@ -15,8 +15,8 @@ namespace TradingPriceUpdater
 	public partial class PriceUpdaterService : ServiceBase
 	{
 		private Timer _timer;
-		private ApiReader apiRead;
-		private DatabaseConnector databaseConnect;
+		private ApiReader APR;
+		private DatabaseConnector DBC;
 		private CurrencyPair currency;
 
 		public PriceUpdaterService()
@@ -26,8 +26,8 @@ namespace TradingPriceUpdater
 
 		protected override void OnStart(string[] args)
 		{
-			apiRead = new ApiReader(); // Initialises ApiReader
-			databaseConnect = new DatabaseConnector(); // Initialises DatabaseConnector
+			APR = new ApiReader(); // Initialises ApiReader
+			DBC = new DatabaseConnector(); // Initialises DatabaseConnector
 
 			currency = new CurrencyPair(2, 1); // Creates new currency pair of ETH/BTC
 
@@ -38,7 +38,7 @@ namespace TradingPriceUpdater
 
 		protected override void OnStop()
 		{
-			databaseConnect.CloseConnection(); // Closes the connection
+			DBC.CloseConnection(); // Closes the connection
 		}
 
 		/// <summary>
@@ -46,7 +46,7 @@ namespace TradingPriceUpdater
 		/// </summary>
 		public void TimerElapsed(object sender, System.Timers.ElapsedEventArgs e)
 		{
-			TickerResult ticker = apiRead.GetTickerResult(currency); // Gets the ticker for the specified currency
+			TickerResult ticker = APR.GetTickerResult(currency); // Gets the ticker for the specified currency
 		}
 	}
 }
