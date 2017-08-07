@@ -12,9 +12,21 @@ namespace TradingLib.Tests
 	public class HistoricalTradeTests
 	{
 		[TestMethod()]
-		public void HistoricalTradeTest()
+		public void HistoricalTradeTest1()
 		{
-			Assert.Fail();
+			HistoricalTrade HT = new HistoricalTrade(1000, 1000000, 147.147, 999);
+
+			Assert.AreEqual(HT.Amount, 147.147);
+			Assert.IsTrue(HT.IsBid);
+		}
+		[TestMethod()]
+
+		public void HistoricalTradeTest2()
+		{
+			HistoricalTrade HT = new HistoricalTrade(1000, 1000000, -147.147, 999);
+
+			Assert.AreEqual(HT.Amount, 147.147);
+			Assert.IsTrue(!HT.IsBid);
 		}
 	}
 }
