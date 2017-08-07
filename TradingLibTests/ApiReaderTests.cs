@@ -33,7 +33,7 @@ namespace TradingLib.Tests
 		[TestMethod()]
 		public void GetHistoryTest()
 		{
-			TickerHistoryResult THR = APC.GetTickerHistoryResult(new CurrencyPair(0, 1));
+			TradeHistoryResult THR = APC.GetTradeHistoryResult(new CurrencyPair(0, 1));
 			double sumBid = 0;
 			double sumAsk = 0;
 			foreach (HistoricalTrade trade in THR.trades)

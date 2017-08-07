@@ -9,6 +9,7 @@ namespace TradingLib
 	{
 		public ApiReader()
 		{
+			// Not required
 		}
 
 		public TickerResult GetTickerResult(CurrencyPair currency)
@@ -22,21 +23,21 @@ namespace TradingLib
 			return result;
 		}
 
-		public TickerHistoryResult GetTickerHistoryResult(CurrencyPair currency)
+		public TradeHistoryResult GetTradeHistoryResult(CurrencyPair currency)
 		{
 			string rawData = DownloadString("https://api.bitfinex.com/v2/trades/" + currency.GetBitfinexCurrencyPair() +
 			                                "/hist");
 
 			double[,] array = JsonConvert.DeserializeObject<double[,]>(rawData);
 
-			TickerHistoryResult result = TickerHistoryArrayToTickerHistoryResult(array);
+			TradeHistoryResult result = TickerHistoryArrayToTradeHistoryResult(array);
 
 			return result;
 		}
 
-		TickerHistoryResult TickerHistoryArrayToTickerHistoryResult(double[,] input)
+		TradeHistoryResult TickerHistoryArrayToTradeHistoryResult(double[,] input)
 		{
-			TickerHistoryResult THR = new TickerHistoryResult();
+			TradeHistoryResult THR = new TradeHistoryResult();
 
 			for (int i = 0; i < input.Length/4; i++)
 			{

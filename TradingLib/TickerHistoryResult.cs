@@ -3,7 +3,7 @@ using System.Reflection;
 
 namespace TradingLib
 {
-	public class TickerHistoryResult
+	public class TradeHistoryResult
 	{
 		public List<HistoricalTrade> trades = new List<HistoricalTrade>();
 
