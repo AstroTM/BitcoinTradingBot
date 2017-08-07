@@ -5,6 +5,9 @@ using Newtonsoft.Json.Linq;
 
 namespace TradingLib
 {
+	/// <summary>
+	/// Allows readonly operations to be carried out on the Bitfinex API.
+	/// </summary>
 	public class ApiReader
 	{
 		public ApiReader()
