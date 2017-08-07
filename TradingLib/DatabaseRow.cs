@@ -1,5 +1,8 @@
 ﻿namespace TradingLib
 {
+	/// <summary>
+	/// Holds the data of a single row of the database.
+	/// </summary>
 	public class DatabaseRow
 	{
 		public double date;
