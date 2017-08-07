@@ -33,23 +33,23 @@ namespace TradingLib.Tests
 		[TestMethod()]
 		public void GetHistoryTest()
 		{
-			TickerHistoryResult THR = APC.GetTickerHistoryResult();
+			TickerHistoryResult THR = APC.GetTickerHistoryResult(new CurrencyPair(0, 1));
 			double sumBid = 0;
 			double sumAsk = 0;
-			foreach (double value in THR.trades.amount)
+			foreach (HistoricalTrade trade in THR.trades)
 			{
-				if (value < 0)
+				if (trade.IsBid)
 				{
-					sumAsk += -value;
+					sumBid += trade.Amount;
 				}
 				else
 				{
-					sumBid += value;
+					sumAsk += trade.Amount;
 				}
 			}
 
-			Assert.AreEqual(THR.sumAsk, sumAsk);
-			Assert.AreEqual(THR.sumBid, sumBid);
+			Assert.AreEqual(THR.sumAsk(), sumAsk);
+			Assert.AreEqual(THR.sumBid(), sumBid);
 		}
 
 		[TestMethod()]
