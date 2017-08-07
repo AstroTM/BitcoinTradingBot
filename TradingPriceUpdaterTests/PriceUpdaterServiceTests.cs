@@ -24,9 +24,7 @@ namespace TradingPriceUpdater.Tests
 		[TestMethod()]
 		public void TimerElapsedTest()
 		{
-			TimeSpan timeDifference = DateTime.UtcNow -
-			                                 new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
-			int timeOfInsert = System.Convert.ToInt32(timeDifference.TotalSeconds);
+			int timeOfInsert = PUS.GetUnixTime();
 
 			PUS.APR = new ApiReader(); // Initialises ApiReader
 			PUS.DBC = new DatabaseConnector(); // Initialises DatabaseConnector

@@ -49,6 +49,17 @@ namespace TradingPriceUpdater
 		public void TimerElapsed(object sender, ElapsedEventArgs e)
 		{
 			TickerResult ticker = APR.GetTickerResult(currency); // Gets the ticker for the specified currency
+
+			LastInsert = GetUnixTime();
+		}
+
+		public int GetUnixTime()
+		{
+			TimeSpan timeDifference = DateTime.UtcNow -
+			                          new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+			int unixTime = System.Convert.ToInt32(timeDifference.TotalSeconds);
+
+			return unixTime;
 		}
 	}
 }
