@@ -43,6 +43,11 @@ namespace TradingBot
 				var boughtETH = graph.Div(graph.Mul(askValue, BTCBalance), price);
 
 				var finalETH = graph.Add(boughtETH, remainingETH);
+
+				var remainingBTC = graph.Mul(graph.Sub(one, bidValue), BTCBalance);
+				var boughtBTC = graph.Div(graph.Mul(askValue, ETHBalance), price);
+
+				var finalBTC = graph.Add(boughtBTC, remainingBTC);
 			}
 		}
 	}
