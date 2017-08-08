@@ -56,7 +56,13 @@ namespace TradingBot
 
 		void Predict(DatabaseRow inputData)
 		{
-			
+			using (var graph = new TFGraph())
+			{
+				var time = graph.Placeholder(TFDataType.Int32, TFShape.Scalar, "time"); // Input value for time of database row
+				var price = graph.Placeholder(TFDataType.Double, TFShape.Scalar, "price"); // Input value for ETHBTC price
+				var volBid = graph.Placeholder(TFDataType.Double, TFShape.Scalar, "volBid"); // Input value for volume of ETH bought
+				var volAsk = graph.Placeholder(TFDataType.Double, TFShape.Scalar, "volAsk"); // Input value for volume of ETH sold
+			}
 		}
 	}
 }
