@@ -28,10 +28,8 @@ namespace TradingBot
 
 				var one = graph.Const(1);
 
-				var time = graph.Placeholder(TFDataType.Int32, TFShape.Scalar, "time"); // Input value for time of database row
-				var price = graph.Placeholder(TFDataType.Double, TFShape.Scalar, "price"); // Input value for ETHBTC price
-				var volBid = graph.Placeholder(TFDataType.Double, TFShape.Scalar, "volBid"); // Input value for volume of ETH bought
-				var volAsk = graph.Placeholder(TFDataType.Double, TFShape.Scalar, "volAsk"); // Input value for volume of ETH sold
+				// X: array with 4 values: time, price, volBid, volAsk.
+				var X = graph.Placeholder(TFDataType.Int32, new TFShape(4), "X"); // Input value for a single database row
 
 				// These will be the proportion of ETH to BTC: 1 means all ETH and no BTC, 0 means all BTC and no ETH
 				var ethToBTCHoldings = graph.Variable(new TFOutput(), "ethToBtc"); // Ammount of ETH have as a fraction of 1
