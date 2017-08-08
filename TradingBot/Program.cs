@@ -53,5 +53,10 @@ namespace TradingBot
 				var finalBTC = graph.Add(boughtBTC, remainingBTC); // Final Bitcoin balance after transaction
 			}
 		}
+
+		void Predict(DatabaseRow inputData)
+		{
+			
+		}
 	}
 }
