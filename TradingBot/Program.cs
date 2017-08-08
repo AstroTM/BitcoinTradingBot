@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using TradingLib;
+using TensorFlow;
 
 namespace TradingBot
 {
@@ -19,6 +21,19 @@ namespace TradingBot
 		{
 			APR = new ApiReader(); // Initialises ApiReader
 			DBC = new DatabaseConnector(); // Initialises DatabaseConnector
+
+			using (var graph = new TFGraph())
+			{
+				List<DatabaseRow> inputData = DBC.SelectAllFromDatabase();
+
+				var one = graph.Const(1);
+
+				// X: array with 4 values: time, price, volBid, volAsk.
+				var X = graph.Placeholder(TFDataType.Int32, new TFShape(4), "X"); // Input value for a single database row
+
+				// These will be the proportion of ETH to BTC: 1 means all ETH and no BTC, 0 means all BTC and no ETH
+				var ethToBTCHoldings = graph.Variable(new TFOutput(), "ethToBtc"); // Ammount of ETH have as a fraction of 1
+			}
 		}
 	}
 }
