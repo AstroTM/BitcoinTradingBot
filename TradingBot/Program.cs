@@ -26,6 +26,8 @@ namespace TradingBot
 			{
 				List<DatabaseRow> inputData = DBC.SelectAllFromDatabase();
 
+				var one = graph.Const(1);
+
 				var time = graph.Placeholder(TFDataType.Int32, null, "time");
 				var price = graph.Placeholder(TFDataType.Double, null, "price");
 				var volBid = graph.Placeholder(TFDataType.Double, null, "volBid");
@@ -36,6 +38,11 @@ namespace TradingBot
 
 				var bidValue = graph.Variable(new TFOutput(), "bid"); // ammount of ETH to buy as a fraction of the 
 				var askValue = graph.Variable(new TFOutput(), "ask"); // ammount of to buy as a fraction of 1
+
+				var remainingETH = graph.Mul(graph.Sub(one, bidValue), ETHBalance);
+				var boughtETH = graph.Div(graph.Mul(askValue, BTCBalance), price);
+
+				var finalETH = graph.Add(boughtETH, remainingETH);
 			}
 		}
 	}
