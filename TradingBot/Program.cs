@@ -20,6 +20,16 @@ namespace TradingBot
 		{
 			APR = new ApiReader(); // Initialises ApiReader
 			DBC = new DatabaseConnector(); // Initialises DatabaseConnector
+
+			using (var graph = new TFGraph())
+			{
+				List<DatabaseRow> inputData = DBC.SelectAllFromDatabase();
+
+				var time = graph.Placeholder(TFDataType.Int32, null, "time");
+				var price = graph.Placeholder(TFDataType.Double, null, "price");
+				var volBid = graph.Placeholder(TFDataType.Double, null, "volBid");
+				var volAsk = graph.Placeholder(TFDataType.Double, null, "volAsk");
+			}
 		}
 	}
 }
