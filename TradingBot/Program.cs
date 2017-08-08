@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using TradingLib;
@@ -29,6 +30,12 @@ namespace TradingBot
 				var price = graph.Placeholder(TFDataType.Double, null, "price");
 				var volBid = graph.Placeholder(TFDataType.Double, null, "volBid");
 				var volAsk = graph.Placeholder(TFDataType.Double, null, "volAsk");
+
+				var ETHBalance = graph.Placeholder(TFDataType.Int32, null, "ETHBalance");
+				var BTCBalance = graph.Placeholder(TFDataType.Int32, null, "BTCBalance");
+
+				var bidValue = graph.Variable(new TFOutput(), "bid"); // ammount of ETH to buy as a fraction of the 
+				var askValue = graph.Variable(new TFOutput(), "ask"); // ammount of to buy as a fraction of 1
 			}
 		}
 	}
