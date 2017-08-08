@@ -28,13 +28,16 @@ namespace TradingBot
 
 				var one = graph.Const(1);
 
-				var time = graph.Placeholder(TFDataType.Int32, null, "time");
-				var price = graph.Placeholder(TFDataType.Double, null, "price");
-				var volBid = graph.Placeholder(TFDataType.Double, null, "volBid");
-				var volAsk = graph.Placeholder(TFDataType.Double, null, "volAsk");
+				var ETHUSD = graph.Const(APR.GetTickerResult(new CurrencyPair(0, 2)).lastPrice);
+				var BTCUSD = graph.Const(APR.GetTickerResult(new CurrencyPair(0, 1)).lastPrice);
 
-				var ETHBalance = graph.Placeholder(TFDataType.Int32, null, "ETHBalance");
-				var BTCBalance = graph.Placeholder(TFDataType.Int32, null, "BTCBalance");
+				var time = graph.Placeholder(TFDataType.Int32, TFShape.Scalar, "time");
+				var price = graph.Placeholder(TFDataType.Double, TFShape.Scalar, "price");
+				var volBid = graph.Placeholder(TFDataType.Double, TFShape.Scalar, "volBid");
+				var volAsk = graph.Placeholder(TFDataType.Double, TFShape.Scalar, "volAsk");
+
+				var ETHBalance = graph.Placeholder(TFDataType.Int32, TFShape.Scalar, "ETHBalance");
+				var BTCBalance = graph.Placeholder(TFDataType.Int32, TFShape.Scalar, "BTCBalance");
 
 				var bidValue = graph.Variable(new TFOutput(), "bid"); // ammount of ETH to buy as a fraction of the 
 				var askValue = graph.Variable(new TFOutput(), "ask"); // ammount of to buy as a fraction of 1
