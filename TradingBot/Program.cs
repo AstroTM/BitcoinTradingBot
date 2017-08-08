@@ -33,8 +33,8 @@ namespace TradingBot
 				var volBid = graph.Placeholder(TFDataType.Double, TFShape.Scalar, "volBid"); // Input value for volume of ETH bought
 				var volAsk = graph.Placeholder(TFDataType.Double, TFShape.Scalar, "volAsk"); // Input value for volume of ETH sold
 
-				var bidValue = graph.Variable(new TFOutput(), "bid"); // Ammount of ETH to buy as a fraction of 1
-				var askValue = graph.Variable(new TFOutput(), "ask"); // Ammount of to buy as a fraction of 1
+				// These will be the proportion of ETH to BTC: 1 means all ETH and no BTC, 0 means all BTC and no ETH
+				var ethToBTCHoldings = graph.Variable(new TFOutput(), "ethToBtc"); // Ammount of ETH have as a fraction of 1
 			}
 		}
 	}
