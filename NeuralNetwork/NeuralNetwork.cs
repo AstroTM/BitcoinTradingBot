@@ -3,9 +3,9 @@ using TradingLib;
 
 namespace TradingBot
 {
-	internal class NeuralNet
+	public class NeuralNetwork
 	{
-		public NeuralNet()
+		public NeuralNetwork()
 		{
 		}
 
