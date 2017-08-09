@@ -12,6 +12,8 @@ namespace TradingBot
 		public void TrainNetwork(List<DatabaseRow> inputAsDatabaseRows)
 		{
 			InputData X = new InputData(inputAsDatabaseRows);
+
+
 		}
 	}
 }
