@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradingPriceUpdater", "Trad
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradingPriceUpdaterTests", "TradingPriceUpdaterTests\TradingPriceUpdaterTests.csproj", "{437B1E70-CAF0-4595-B727-5D5C92A13EC6}"
 EndProject
-Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "NeuralNetwork", "NeuralNetwork\NeuralNetwork.pyproj", "{79AB22F3-B8E5-4A38-8CE3-CB01DB616BDC}"
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "NeuralNetwork", "NeuralNetwork\NeuralNetwork.pyproj", "{EA71B70C-BF5A-4257-917F-335D06E1C66D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,8 +41,8 @@ Global
 		{437B1E70-CAF0-4595-B727-5D5C92A13EC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{437B1E70-CAF0-4595-B727-5D5C92A13EC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{437B1E70-CAF0-4595-B727-5D5C92A13EC6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{79AB22F3-B8E5-4A38-8CE3-CB01DB616BDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{79AB22F3-B8E5-4A38-8CE3-CB01DB616BDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA71B70C-BF5A-4257-917F-335D06E1C66D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA71B70C-BF5A-4257-917F-335D06E1C66D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
