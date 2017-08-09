@@ -113,10 +113,12 @@ namespace TradingLib
 		/// </summary>
 		public static string GetTradeHistoryRaw(CurrencyPair currency)
 		{
+			long unixTime = Convert.ToInt64(GetUnixTime());
+
 			var values = new Dictionary<string, string>
 			{
-				{ "start", Convert.ToString((GetUnixTime()-10)*1000) },
-				{ "end", Convert.ToString((GetUnixTime())*1000) }
+				{ "start", Convert.ToString((unixTime-10)*1000) },
+				{ "end", Convert.ToString(unixTime*1000) }
 			};
 
 			var content = new FormUrlEncodedContent(values);
