@@ -48,7 +48,7 @@ namespace TradingPriceUpdater
 		/// </summary>
 		public void TimerElapsed(object sender, ElapsedEventArgs e)
 		{
-			LastInsert = GetUnixTime();
+			LastInsert = ApiReader.GetUnixTime();
 
 			TickerResult ticker = APR.GetTickerResult(currency); // Gets the ticker for the specified currency
 			TradeHistoryResult history = APR.GetTradeHistoryResult(currency); // Gets the trade history for the specified currency
@@ -66,15 +66,6 @@ namespace TradingPriceUpdater
 
 			DatabaseRow row = new DatabaseRow(LastInsert, ticker.lastPrice, volBid, volAsk);
 			DBC.InsertIntoDatabase(row);
-		}
-
-		public int GetUnixTime()
-		{
-			TimeSpan timeDifference = DateTime.UtcNow -
-			                          new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
-			int unixTime = System.Convert.ToInt32(timeDifference.TotalSeconds);
-
-			return unixTime;
 		}
 	}
 }

@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradingPriceUpdater", "Trad
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradingPriceUpdaterTests", "TradingPriceUpdaterTests\TradingPriceUpdaterTests.csproj", "{437B1E70-CAF0-4595-B727-5D5C92A13EC6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeuralNetwork", "NeuralNetwork\NeuralNetwork.csproj", "{3372B322-169A-476C-80F2-78CEBD04FE00}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeuralNetworkTests", "NeuralNetworkTests\NeuralNetworkTests.csproj", "{8C389ED2-1E3A-4128-9523-49E4D270ED4D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{437B1E70-CAF0-4595-B727-5D5C92A13EC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{437B1E70-CAF0-4595-B727-5D5C92A13EC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{437B1E70-CAF0-4595-B727-5D5C92A13EC6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3372B322-169A-476C-80F2-78CEBD04FE00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3372B322-169A-476C-80F2-78CEBD04FE00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3372B322-169A-476C-80F2-78CEBD04FE00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3372B322-169A-476C-80F2-78CEBD04FE00}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C389ED2-1E3A-4128-9523-49E4D270ED4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C389ED2-1E3A-4128-9523-49E4D270ED4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C389ED2-1E3A-4128-9523-49E4D270ED4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C389ED2-1E3A-4128-9523-49E4D270ED4D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
