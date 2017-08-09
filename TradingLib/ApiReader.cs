@@ -61,6 +61,8 @@ namespace TradingLib
 		/// <returns>TradeHistoryResult of input</returns>
 		TradeHistoryResult TradeHistoryArrayToTradeHistoryResult(double[,] input)
 		{
+			int unixTime = GetUnixTime();
+
 			TradeHistoryResult THR = new TradeHistoryResult(); // Creates blank TradeHistoryResult
 
 			for (int i = 0; i < input.Length / 4; i++) // For each row in the input array
@@ -70,6 +72,12 @@ namespace TradingLib
 					Convert.ToUInt32(input[i, 1] / 1000), 
 					input[i, 2], 
 					input[i, 2])); // Append row's trade data to TradeHistoryResult
+			}
+
+			for(int i = THR.trades.Count - 1; i > 0; i--) // Starts at 1 so there is at least a value
+			{
+				if(THR.trades[i].Time < unixTime - 100)
+					THR.trades.RemoveAt(i);
 			}
 
 			return THR;
