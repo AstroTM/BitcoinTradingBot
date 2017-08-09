@@ -43,7 +43,9 @@ namespace TradingLib
 		/// <returns>TradeHistoryResult containing last 120(?) trades</returns>
 		public TradeHistoryResult GetTradeHistoryResult(CurrencyPair currency)
 		{
-			string rawData = GetTradeHistoryRaw(currency); // Downloads raw data from API
+			string rawData = DownloadString("https://api.bitfinex.com/v2/trades/" +
+			                                 currency.GetBitfinexCurrencyPair() +
+			                                 "/hist"); // Downloads raw data from API
 
 			double[,] array = JsonConvert.DeserializeObject<double[,]>(rawData); // Converts raw data to double[,]
 
@@ -106,36 +108,6 @@ namespace TradingLib
 			string reply = WebClient.DownloadString(address); // Download data from address as string.
 
 			return reply;
-		}
-		
-		/// <summary>
-		/// Gets raw trade history Json with post parameters
-		/// </summary>
-		public static string GetTradeHistoryRaw(CurrencyPair currency)
-		{
-			long unixTime = Convert.ToInt64(GetUnixTime());
-
-			var values = new Dictionary<string, string>
-			{
-				{ "start", Convert.ToString((unixTime-10)*1000) },
-				{ "end", Convert.ToString(unixTime*1000) }
-			};
-
-			var content = new FormUrlEncodedContent(values);
-
-			// This line often takes a while as it involves connecting to the internet
-			var task = HttpClient.PostAsync(
-				@"https://api.bitfinex.com/v2/trades/" + 
-				currency.GetBitfinexCurrencyPair() + 
-				"/hist", content); // Download data from address as string.
-			task.Wait();
-			var response = task.Result;
-
-			var task2 = response.Content.ReadAsStringAsync();
-			task.Wait();
-			var result = task2.Result;
-
-			return result;
 		}
 
 		public static int GetUnixTime()
