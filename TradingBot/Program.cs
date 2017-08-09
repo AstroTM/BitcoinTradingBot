@@ -23,9 +23,9 @@ namespace TradingBot
 			APR = new ApiReader(); // Initialises ApiReader
 			DBC = new DatabaseConnector(); // Initialises DatabaseConnector
 
-			PI = new PythonInterface();
+			NeuralNet ANN = new NeuralNet();
 
-			PI.TrainNetwork(DBC.SelectAllFromDatabase());
+			ANN.TrainNetwork(DBC.SelectAllFromDatabase());
 		}
 	}
 }
