@@ -30,6 +30,7 @@ namespace TradingBot
 			using (Py.GIL())
 			{
 				dynamic NeuralNetworkInterface = Py.Import("NeuralNetwork");
+
 				Console.WriteLine(NeuralNetworkInterface.CSharpInterface.TrainNetwork(input));
 			}
 		}
