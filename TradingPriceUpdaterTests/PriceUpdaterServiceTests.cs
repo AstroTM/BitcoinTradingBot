@@ -24,7 +24,7 @@ namespace TradingPriceUpdater.Tests
 		[TestMethod()]
 		public void TimerElapsedTest()
 		{
-			int timeOfInsert = PUS.GetUnixTime();
+			int timeOfInsert = ApiReader.GetUnixTime();
 
 			PUS.APR = new ApiReader(); // Initialises ApiReader
 			PUS.DBC = new DatabaseConnector(); // Initialises DatabaseConnector
