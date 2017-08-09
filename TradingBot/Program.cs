@@ -13,7 +13,6 @@ namespace TradingBot
 	{
 		private static ApiReader APR;
 		private static DatabaseConnector DBC;
-		private static PythonInterface PI;
 
 		/// <summary>
 		/// The main entry point for the application.
