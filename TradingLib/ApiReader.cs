@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net;
+using System.Net.Http;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -10,6 +12,9 @@ namespace TradingLib
 	/// </summary>
 	public class ApiReader
 	{
+		static WebClient WebClient = new WebClient(); // Create WebClient
+		private static readonly HttpClient HttpClient = new HttpClient(); // Create HttpClient
+
 		public ApiReader()
 		{
 			// Empty for now
@@ -38,9 +43,7 @@ namespace TradingLib
 		/// <returns>TradeHistoryResult containing last 120(?) trades</returns>
 		public TradeHistoryResult GetTradeHistoryResult(CurrencyPair currency)
 		{
-			string rawData = DownloadString("https://api.bitfinex.com/v2/trades/" + 
-				currency.GetBitfinexCurrencyPair() +
-				"/hist"); // Downloads raw data from API
+			string rawData = GetTradeHistoryRaw(currency); // Downloads raw data from API
 
 			double[,] array = JsonConvert.DeserializeObject<double[,]>(rawData); // Converts raw data to double[,]
 
@@ -91,8 +94,7 @@ namespace TradingLib
 
 			return result;
 		}
-
-
+		
 		/// <summary>
 		/// Downloads a web page as a string
 		/// </summary>
@@ -100,12 +102,47 @@ namespace TradingLib
 		/// <returns>Web page as string</returns>
 		public static string DownloadString(string address)
 		{
-			WebClient client = new WebClient(); // Create WebClient
-
 			// This line often takes a while as it involves connecting to the internet
-			string reply = client.DownloadString(address); // Download data from address as string.
+			string reply = WebClient.DownloadString(address); // Download data from address as string.
 
 			return reply;
+		}
+		
+		/// <summary>
+		/// Gets raw trade history Json with post parameters
+		/// </summary>
+		public static string GetTradeHistoryRaw(CurrencyPair currency)
+		{
+			var values = new Dictionary<string, string>
+			{
+				{ "start", Convert.ToString((GetUnixTime()-10)*1000) },
+				{ "end", Convert.ToString((GetUnixTime())*1000) }
+			};
+
+			var content = new FormUrlEncodedContent(values);
+
+			// This line often takes a while as it involves connecting to the internet
+			var task = HttpClient.PostAsync(
+				@"https://api.bitfinex.com/v2/trades/" + 
+				currency.GetBitfinexCurrencyPair() + 
+				"/hist", content); // Download data from address as string.
+			task.Wait();
+			var response = task.Result;
+
+			var task2 = response.Content.ReadAsStringAsync();
+			task.Wait();
+			var result = task2.Result;
+
+			return result;
+		}
+
+		public static int GetUnixTime()
+		{
+			TimeSpan timeDifference = DateTime.UtcNow -
+			                          new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+			int unixTime = System.Convert.ToInt32(timeDifference.TotalSeconds);
+
+			return unixTime;
 		}
 	}
 }
