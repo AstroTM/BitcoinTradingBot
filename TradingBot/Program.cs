@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using TradingLib;
 using TensorFlow;
+using IronPython.Hosting;
+using Microsoft.Scripting.Hosting;
 
 namespace TradingBot
 {
