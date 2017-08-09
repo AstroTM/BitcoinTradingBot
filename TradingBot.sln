@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26403.7
+VisualStudioVersion = 15.0.26430.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradingBot", "TradingBot\TradingBot.csproj", "{7ADC6A3A-0640-4A26-8F0A-20BBC613CCAD}"
 EndProject
@@ -12,6 +12,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradingPriceUpdater", "TradingPriceUpdater\TradingPriceUpdater.csproj", "{32CB78A0-08A3-4D25-B1F3-B9E47AE48C04}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradingPriceUpdaterTests", "TradingPriceUpdaterTests\TradingPriceUpdaterTests.csproj", "{437B1E70-CAF0-4595-B727-5D5C92A13EC6}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "NeuralNetwork", "NeuralNetwork\NeuralNetwork.pyproj", "{79AB22F3-B8E5-4A38-8CE3-CB01DB616BDC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,8 @@ Global
 		{437B1E70-CAF0-4595-B727-5D5C92A13EC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{437B1E70-CAF0-4595-B727-5D5C92A13EC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{437B1E70-CAF0-4595-B727-5D5C92A13EC6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79AB22F3-B8E5-4A38-8CE3-CB01DB616BDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79AB22F3-B8E5-4A38-8CE3-CB01DB616BDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
