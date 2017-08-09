@@ -22,9 +22,11 @@ namespace TradingBot
 			APR = new ApiReader(); // Initialises ApiReader
 			DBC = new DatabaseConnector(); // Initialises DatabaseConnector
 
-			NeuralNet ANN = new NeuralNet();
+			NeuralNetwork ANN = new NeuralNetwork();
 
-			ANN.TrainNetwork(DBC.SelectAllFromDatabase());
+			List<DatabaseRow> rows = DBC.SelectAllFromDatabase();
+
+			ANN.TrainNetwork(rows);
 		}
 	}
 }
