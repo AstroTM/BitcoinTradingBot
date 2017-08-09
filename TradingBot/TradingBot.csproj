@@ -112,8 +112,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="InputData.cs" />
-    <Compile Include="NeuralNetwork.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -122,6 +120,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\NeuralNetwork\NeuralNetwork.csproj">
+      <Project>{3372b322-169a-476c-80f2-78cebd04fe00}</Project>
+      <Name>NeuralNetwork</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TradingLib\TradingLib.csproj">
       <Project>{57f8ef23-4e67-4230-9534-24dc234186c3}</Project>
       <Name>TradingLib</Name>
