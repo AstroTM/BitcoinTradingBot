@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
@@ -30,6 +31,8 @@ namespace PriceUpdater
 			_timer = new Timer(10 * 1000); // Create timer to run every 10 seconds
 			_timer.Elapsed += new System.Timers.ElapsedEventHandler(TimerElapsed); // Sets method to be run when the timer is elapsed
 			_timer.Start(); // Starts the timer
+
+			Console.ReadLine();
 		}
 
 		/// <summary>
@@ -41,6 +44,8 @@ namespace PriceUpdater
 
 			TickerResult ticker = APR.GetTickerResult(currency); // Gets the ticker for the specified currency
 			TradeHistoryResult history = APR.GetTradeHistoryResult(currency); // Gets the trade history for the specified currency
+			
+			Console.Write("Got price " + ticker.lastPrice + " at time " + LastInsert + "... ");
 
 			double volAsk = 0;
 			double volBid = 0;
@@ -55,6 +60,8 @@ namespace PriceUpdater
 
 			DatabaseRow row = new DatabaseRow(LastInsert, ticker.lastPrice, volBid, volAsk);
 			DBC.InsertIntoDatabase(row);
+
+			Console.WriteLine("Inserted.");
 		}
 	}
 }

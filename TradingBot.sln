@@ -9,10 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradingLibTests", "TradingL
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradingLib", "TradingLib\TradingLib.csproj", "{57F8EF23-4E67-4230-9534-24DC234186C3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradingPriceUpdater", "TradingPriceUpdater\TradingPriceUpdater.csproj", "{32CB78A0-08A3-4D25-B1F3-B9E47AE48C04}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradingPriceUpdaterTests", "TradingPriceUpdaterTests\TradingPriceUpdaterTests.csproj", "{437B1E70-CAF0-4595-B727-5D5C92A13EC6}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeuralNetwork", "NeuralNetwork\NeuralNetwork.csproj", "{3372B322-169A-476C-80F2-78CEBD04FE00}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceUpdater", "PriceUpdater\PriceUpdater.csproj", "{A5DE4F2E-BC5C-4C82-83D1-F283A6B1AA8B}"
@@ -37,14 +33,6 @@ Global
 		{57F8EF23-4E67-4230-9534-24DC234186C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{57F8EF23-4E67-4230-9534-24DC234186C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{57F8EF23-4E67-4230-9534-24DC234186C3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{32CB78A0-08A3-4D25-B1F3-B9E47AE48C04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{32CB78A0-08A3-4D25-B1F3-B9E47AE48C04}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{32CB78A0-08A3-4D25-B1F3-B9E47AE48C04}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{32CB78A0-08A3-4D25-B1F3-B9E47AE48C04}.Release|Any CPU.Build.0 = Release|Any CPU
-		{437B1E70-CAF0-4595-B727-5D5C92A13EC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{437B1E70-CAF0-4595-B727-5D5C92A13EC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{437B1E70-CAF0-4595-B727-5D5C92A13EC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{437B1E70-CAF0-4595-B727-5D5C92A13EC6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3372B322-169A-476C-80F2-78CEBD04FE00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3372B322-169A-476C-80F2-78CEBD04FE00}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3372B322-169A-476C-80F2-78CEBD04FE00}.Release|Any CPU.ActiveCfg = Release|Any CPU
