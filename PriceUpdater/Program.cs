@@ -8,7 +8,7 @@ using TradingLib;
 
 namespace PriceUpdater
 {
-	static class Program
+	public static class Program
 	{
 		private static Timer _timer;
 
@@ -20,7 +20,7 @@ namespace PriceUpdater
 		/// <summary>
 		/// The main entry point for the application.
 		/// </summary>
-		static void Main()
+		public static void Main()
 		{
 			APR = new ApiReader(); // Initialises ApiReader
 			DBC = new DatabaseConnector(); // Initialises DatabaseConnector
