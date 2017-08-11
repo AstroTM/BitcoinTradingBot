@@ -10,6 +10,7 @@ namespace TradingBot
 		public int InputLayerSize = 4;
 		public int OutputLayerSize = 1;
 		public int HiddenLayerSize = 16;
+		public List<Synapse> synapses;
 
 		public NeuralNetwork()
 		{
@@ -19,7 +20,7 @@ namespace TradingBot
 		{
 			InputData X = new InputData(inputAsDatabaseRows);
 
-
+			synapses = new List<Synapse>();
 		}
 
 		public static dynamic Softmax(double[] z)
