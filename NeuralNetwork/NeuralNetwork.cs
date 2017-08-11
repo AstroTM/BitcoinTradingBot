@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Xml.XPath;
 using TradingLib;
 
 namespace TradingBot
@@ -16,14 +18,30 @@ namespace TradingBot
 
 		}
 
-		public dynamic Softmax(dynamic z)
+		public static dynamic Softmax(double[] z)
 		{
-			var zExp = z;
+			double[] zExp = new double[z.Length];
 
-			foreach (double value in z)
+			for (int i = 0; i < zExp.Length; i++)
 			{
-				
+				zExp[i] = Math.Exp(z[i]);
 			}
+
+			double sumZExp = 0;
+
+			for (int i = 0; i < zExp.Length; i++)
+			{
+				sumZExp += zExp[i];
+			}
+
+			double[] softmax = new double[z.Length];
+
+			for (int i = 0; i < zExp.Length; i++)
+			{
+				softmax[i] = zExp[i] / sumZExp;
+			}
+
+			return softmax;
 		}
 	}
 }
