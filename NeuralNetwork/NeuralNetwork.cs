@@ -7,6 +7,10 @@ namespace TradingBot
 {
 	public class NeuralNetwork
 	{
+		public int InputLayerSize = 4;
+		public int OutputLayerSize = 1;
+		public int HiddenLayerSize = 16;
+
 		public NeuralNetwork()
 		{
 		}
