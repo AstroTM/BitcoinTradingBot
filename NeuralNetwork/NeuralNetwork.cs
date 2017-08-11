@@ -8,19 +8,36 @@ namespace TradingBot
 	public class NeuralNetwork
 	{
 		public int InputLayerSize = 4;
-		public int OutputLayerSize = 1;
 		public int HiddenLayerSize = 16;
+		public int OutputLayerSize = 1;
 		public List<Synapse> synapses;
 
 		public NeuralNetwork()
 		{
+			synapses = new List<Synapse>();
+
+			// Create first layer synapses
+			for (int i = 1; i <= InputLayerSize; i++)
+			{
+				for (int j = 1; j <= HiddenLayerSize; j++)
+				{
+					synapses.Add(new Synapse(1, i, j));
+				}
+			}
+
+			// Create second layer synapses
+			for (int i = 1; i <= HiddenLayerSize; i++)
+			{
+				for (int j = 1; j <= OutputLayerSize; j++)
+				{
+					synapses.Add(new Synapse(2, i, j));
+				}
+			}
 		}
 
 		public void TrainNetwork(List<DatabaseRow> inputAsDatabaseRows)
 		{
 			InputData X = new InputData(inputAsDatabaseRows);
-
-			synapses = new List<Synapse>();
 		}
 
 		public static dynamic Softmax(double[] z)
