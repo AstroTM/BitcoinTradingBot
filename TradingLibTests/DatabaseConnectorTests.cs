@@ -26,10 +26,10 @@ namespace TradingLib.Tests
 			List<DatabaseRow> Rows = DBC.SelectAllFromDatabase(); // Selects every row from the database
 
 			// Checks the first one is as expected
-			Assert.AreEqual(Rows[0].date, 1501940449.3283525);
-			Assert.AreEqual(Rows[0].price, 0.07585);
-			Assert.AreEqual(Rows[0].volBid, 202.4462506);
-			Assert.AreEqual(Rows[0].volAsk, 118.01180373000003);
+			Assert.AreEqual(Rows[0].date, 1502316284);
+			Assert.AreEqual(Rows[0].price, 0.090076);
+			Assert.AreEqual(Rows[0].volBid, 10.6998);
+			Assert.AreEqual(Rows[0].volAsk, 18.175939);
 		}
 
 		/// <summary>
