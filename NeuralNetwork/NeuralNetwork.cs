@@ -18,21 +18,12 @@ namespace TradingBot
 
 			// Create first layer synapses
 			for (int i = 1; i <= InputLayerSize; i++)
-			{
 				for (int j = 1; j <= HiddenLayerSize; j++)
-				{
 					synapses.Add(new Synapse(1, i, j));
-				}
-			}
-
 			// Create second layer synapses
 			for (int i = 1; i <= HiddenLayerSize; i++)
-			{
 				for (int j = 1; j <= OutputLayerSize; j++)
-				{
 					synapses.Add(new Synapse(2, i, j));
-				}
-			}
 		}
 
 		public void TrainNetwork(List<DatabaseRow> inputAsDatabaseRows)
