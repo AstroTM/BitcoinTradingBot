@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceUpdater", "PriceUpdate
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceUpdaterTests", "PriceUpdaterTests\PriceUpdaterTests.csproj", "{870CEE98-8248-4A69-91F0-9BF26BB85B97}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeuralNetworkTests", "NeuralNetworkTests\NeuralNetworkTests.csproj", "{38562495-8A3C-40D0-8A2C-4277418EA909}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{870CEE98-8248-4A69-91F0-9BF26BB85B97}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{870CEE98-8248-4A69-91F0-9BF26BB85B97}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{870CEE98-8248-4A69-91F0-9BF26BB85B97}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38562495-8A3C-40D0-8A2C-4277418EA909}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38562495-8A3C-40D0-8A2C-4277418EA909}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38562495-8A3C-40D0-8A2C-4277418EA909}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38562495-8A3C-40D0-8A2C-4277418EA909}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -3,7 +3,7 @@ using TradingLib;
 
 namespace TradingBot
 {
-	internal class InputData
+	public class InputData
 	{
 		public double[,] xTrain;
 		public double[,] xTest;

@@ -15,5 +15,15 @@ namespace TradingBot
 
 
 		}
+
+		public dynamic Softmax(dynamic z)
+		{
+			var zExp = z;
+
+			foreach (double value in z)
+			{
+				
+			}
+		}
 	}
 }
