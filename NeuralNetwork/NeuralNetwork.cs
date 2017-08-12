@@ -39,6 +39,26 @@ namespace TradingBot
 		public void TrainNetwork(List<DatabaseRow> inputAsDatabaseRows)
 		{
 			InputData X = new InputData(inputAsDatabaseRows);
+
+			for (int i = 0; i < X.xTrain.Length / 4; i++)
+			{
+				foreach (Neuron n in Neurons)
+				{
+					if (n.Layer == 1)
+					{
+						if (n.Height == 1)
+							n.InValue = X.xTrain[i, 0];
+						if (n.Height == 2)
+							n.InValue = X.xTrain[i, 1];
+						if (n.Height == 3)
+							n.InValue = X.xTrain[i, 2];
+						if (n.Height == 4)
+							n.InValue = X.xTrain[i, 3];
+					}
+				}
+
+				Forward();
+			}
 		}
 
 		void Forward() // Will be double
