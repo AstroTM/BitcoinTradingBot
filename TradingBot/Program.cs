@@ -27,6 +27,8 @@ namespace TradingBot
 			List<DatabaseRow> rows = DBC.SelectAllFromDatabase();
 
 			ANN.TrainNetwork(rows);
+
+		    Console.ReadLine();
 		}
 	}
 }

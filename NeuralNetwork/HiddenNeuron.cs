@@ -4,8 +4,6 @@ namespace TradingBot
 {
 	public class HiddenNeuron : Neuron
 	{
-		public double OutValue;
-
 		public override double[] InValue
 		{
 			get { return inValue; }

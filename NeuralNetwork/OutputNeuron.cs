@@ -5,7 +5,7 @@ namespace TradingBot
 {
 	public class OutputNeuron : Neuron
 	{
-	    public override double[] InValue
+        public override double[] InValue
 	    {
 	        get
 	        {

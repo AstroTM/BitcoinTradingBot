@@ -57,11 +57,15 @@ namespace TradingBot
 					}
 				}
 
-				Forward();
+				double output = Forward();
+
+			    Console.WriteLine(
+                    "Input variables: {0:F20}, {1:F20}, {2:F20}, {3:F20}. Output: {4:F20}",
+			        X.xTrain[i, 0], X.xTrain[i, 1], X.xTrain[i, 2], X.xTrain[i, 3], output);
 			}
 		}
 
-		void Forward() // Will be double
+		double Forward() // Will be double
 		{
 		    #region z2Propogate
 		    foreach (Neuron n in Neurons)
@@ -78,7 +82,7 @@ namespace TradingBot
 		        }
 		    }
             #endregion
-
+            
 		    #region a2Propogate
 		    foreach (Synapse s in Synapses)
 		    {
@@ -100,6 +104,49 @@ namespace TradingBot
 		            n.Propogate();
 		    }
             #endregion
-        }
+
+		    #region z3Propogate
+		    foreach (Neuron n in Neurons)
+		    {
+		        if (n.Layer == 2) // If it's in the hidden layer
+		        {
+		            foreach (Synapse s in Synapses)
+		            {
+		                if (s.Layer == 2 && s.InNeuron == n.Height) // If it's Neuron N
+		                {
+		                    s.InValue = n.OutValue;
+		                }
+		            }
+		        }
+		    }
+            #endregion
+
+		    #region yHatPropogate
+		    foreach (Synapse s in Synapses)
+		    {
+		        if (s.Layer == 2)
+		        {
+		            foreach (Neuron n in Neurons)
+		            {
+		                if (n.Layer == 3) // If it's in the hidden layer
+		                {
+		                    n.InValue[s.InNeuron - 1] = s.OutValue;
+		                }
+		            }
+		        }
+		    }
+            #endregion
+
+		    foreach (Neuron n in Neurons)
+		    {
+		        if (n.Layer == 3)
+		        {
+		            n.Propogate();
+		            return n.OutValue;
+		        }
+		    }
+
+		    return 0.00000000001;
+		}
     }
 }
