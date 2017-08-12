@@ -2,12 +2,12 @@
 
 namespace TradingBot
 {
-	public class Neuron
+	public abstract class Neuron
 	{
 		public int Layer;
 		public int Height;
 
-		public double InValue;
+		public virtual double[] InValue { get; set; }
 		public double OutValue;
 
 		public Neuron(int layer, int height)

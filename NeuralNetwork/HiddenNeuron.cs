@@ -19,8 +19,6 @@ namespace TradingBot
 			}
 		}
 
-		public double OutValue;
-
 		public HiddenNeuron(int layer, int height) : base(layer, height)
 		{
 			this.Layer = layer;

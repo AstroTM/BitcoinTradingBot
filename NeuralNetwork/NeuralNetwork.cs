@@ -47,13 +47,13 @@ namespace TradingBot
 					if (n.Layer == 1)
 					{
 						if (n.Height == 1)
-							n.InValue = X.xTrain[i, 0];
+							n.InValue = new double[] { X.xTrain[i, 0] };
 						if (n.Height == 2)
-							n.InValue = X.xTrain[i, 1];
+							n.InValue = new double[] { X.xTrain[i, 1] };
 						if (n.Height == 3)
-							n.InValue = X.xTrain[i, 2];
+							n.InValue = new double[] { X.xTrain[i, 2] };
 						if (n.Height == 4)
-							n.InValue = X.xTrain[i, 3];
+							n.InValue = new double[] { X.xTrain[i, 3] };
 					}
 				}
 

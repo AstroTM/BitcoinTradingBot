@@ -10,12 +10,13 @@ namespace TradingBot
 
 		public double Weight;
 
+		private double inValue;
 		public double InValue
 		{
-			get { return InValue; }
+			get { return inValue; }
 			set
 			{
-				InValue = value;
+				inValue = value;
 				OutValue = Weight * value;
 			}
 		}
