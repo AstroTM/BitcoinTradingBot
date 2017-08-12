@@ -14,9 +14,14 @@
 				inValue = value;
 				OutValue = value[0];
 			}
-		}
+	    }
 
-		public InputNeuron(int layer, int height, int inputNeurons) : base(layer, height, inputNeurons)
+	    public override void Propogate()
+	    {
+	        OutValue = InValue[0];
+	    }
+
+        public InputNeuron(int layer, int height, int inputNeurons) : base(layer, height, inputNeurons)
 		{
 			this.Layer = layer;
 			this.Height = height;

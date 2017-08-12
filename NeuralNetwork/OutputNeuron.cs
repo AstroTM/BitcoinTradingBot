@@ -5,16 +5,15 @@ namespace TradingBot
 {
 	public class OutputNeuron : Neuron
 	{
-		public override double[] InValue
-		{
-			get { return inValue; }
-			set
+	    public override double[] InValue
+	    {
+	        get
+	        {
+	            return inValue;
+	        }
+            set
 			{
 				inValue = value;
-				double sumIn = 0;
-				foreach (double val in inValue)
-					sumIn += val;
-				OutValue = Sigmoid(sumIn);
 			}
 		}
 		private double[] inValue;
@@ -23,7 +22,15 @@ namespace TradingBot
 		{
 			this.Layer = layer;
 			this.Height = height;
-		    inValue = new double[inputNeurons];
+            inValue = new double[inputNeurons];
+        }
+
+	    public override void Propogate()
+	    {
+	        double sumIn = 0;
+	        foreach (double val in InValue)
+	            sumIn += val;
+	        OutValue = Sigmoid(sumIn);
         }
 
 		public static double Sigmoid(double inValue)

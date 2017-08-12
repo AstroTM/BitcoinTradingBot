@@ -4,7 +4,7 @@ namespace TradingBot
 {
 	public class HiddenNeuron : Neuron
 	{
-		public double value;
+		public double OutValue;
 
 		public override double[] InValue
 		{
@@ -27,7 +27,15 @@ namespace TradingBot
 		    inValue = new double[inputNeurons];
         }
 
-		public static double Sigmoid(double inValue)
+	    public override void Propogate()
+	    {
+	        double sumIn = 0;
+	        foreach (double val in InValue)
+	            sumIn += val;
+	        OutValue = Sigmoid(sumIn);
+	    }
+
+        public static double Sigmoid(double inValue)
 		{
 			return 1 / (1 + Math.Exp(-inValue));
 		}

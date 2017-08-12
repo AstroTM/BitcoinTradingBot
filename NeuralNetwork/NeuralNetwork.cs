@@ -93,7 +93,13 @@ namespace TradingBot
 		            }
 		        }
 		    }
-		    #endregion
+
+		    foreach (Neuron n in Neurons)
+		    {
+		        if (n.Layer == 2)
+		            n.Propogate();
+		    }
+            #endregion
         }
     }
 }
