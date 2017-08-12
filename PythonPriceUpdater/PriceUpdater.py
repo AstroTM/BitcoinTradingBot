@@ -6,9 +6,8 @@ import time
 from apscheduler.schedulers.blocking import BlockingScheduler
 import sqlite3
 
-conn = sqlite3.connect('/home/mattyab/bitcoin-price-prediction/priceData.db')
-
 def tick():
+    conn = sqlite3.connect('../priceData.db')
     c = conn.cursor()
     
     ticker = requests.get('https://api.bitfinex.com/v2/ticker/tETHBTC').json()
@@ -18,6 +17,14 @@ def tick():
 
     asks = []
     bids = []
+        
+    for i in range(0, len(depth) - 1):
+        print(i)
+        print(len(depth))
+        if depth[i][1]/1000 < date - 100:
+            for j in range(i, len(depth) - 1):
+                depth.pop(i)
+            break
 
     for trade in depth:
         if trade[2] < 0:
@@ -38,6 +45,8 @@ def tick():
     conn.commit()
 
 def main():
+    tick()
+
     """Run tick() at the interval of every ten seconds."""
     scheduler = BlockingScheduler(timezone=utc)
     scheduler.add_job(tick, 'interval', seconds=10)
@@ -52,5 +61,5 @@ if __name__ == '__main__':
         main()
     except KeyboardInterrupt:
         conn.close()
-        print 'Interrupted'
+        print('Interrupted')
         sys.exit(0)
