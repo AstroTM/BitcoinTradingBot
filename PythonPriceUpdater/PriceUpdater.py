@@ -19,8 +19,6 @@ def tick():
     bids = []
         
     for i in range(0, len(depth) - 1):
-        print(i)
-        print(len(depth))
         if depth[i][1]/1000 < date - 100:
             for j in range(i, len(depth) - 1):
                 depth.pop(i)
@@ -35,7 +33,19 @@ def tick():
     v_bid = sum([bid for bid in bids])
     v_ask = sum([ask for ask in asks])
 
-    command = 'INSERT INTO prices VALUES (' + str(date) + ', ' + str(price) + ', ' + str(v_bid) + ', ' + str(v_ask) + ');'
+    command = 'INSERT INTO prices VALUES (' + \
+        str(date) + ', ' + \
+        str(price) + ', ' + \
+        str(v_bid) + ', ' + \
+        str(v_ask) + ', ' + \
+        str(float(ticker[0])) + ', ' + \ # bid
+        str(float(ticker[1])) + ', ' + \ # bid_size
+        str(float(ticker[2])) + ', ' + \ # ask
+        str(float(ticker[3])) + ', ' + \ # ask_size
+        str(float(ticker[5])) + ', ' + \ # change_perc
+        str(float(ticker[8])) + ', ' + \ # high
+        str(float(ticker[9])) + ', ' + \ # low
+        str(float(ticker[7])) + ');'     # volume
     c.execute(command)
     #print(date, price, v_bid, v_ask)
 
