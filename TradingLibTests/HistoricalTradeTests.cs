@@ -18,7 +18,7 @@ namespace TradingLib.Tests
 		/// Tests HistoricalTrade functions with positive value (bid)
 		/// </summary>
 		[TestMethod()]
-		public void HistoricalTradeTest1()
+		public void TradingLib_HistoricalTrade_HistoricalTradeTest1()
 		{
 			HistoricalTrade HT = new HistoricalTrade(1000, 1000000, 147.147, 999); // Creates new HistoricalTrade object with positive value
 
@@ -30,7 +30,7 @@ namespace TradingLib.Tests
 		/// Tests HistoricalTrade functions with negative value (ask)
 		/// </summary>
 		[TestMethod()]
-		public void HistoricalTradeTest2()
+		public void TradingLib_HistoricalTrade_HistoricalTradeTest2()
 		{
 			HistoricalTrade HT = new HistoricalTrade(1000, 1000000, -147.147, 999); // Creates new HistoricalTrade object with negative value
 

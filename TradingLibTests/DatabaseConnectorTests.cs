@@ -21,7 +21,7 @@ namespace TradingLib.Tests
 		/// Check selecting the first row from the database yields the correct result
 		/// </summary>
 		[TestMethod()]
-		public void SelectAllFromDatabaseTest()
+		public void TradingLib_DatabaseConnector_SelectAllFromDatabaseTest()
 		{
 			List<DatabaseRow> Rows = DBC.SelectAllFromDatabase(); // Selects every row from the database
 
@@ -36,7 +36,7 @@ namespace TradingLib.Tests
 		/// Check values can be correctly inserted, selected and removed from the database.
 		/// </summary>
 		[TestMethod()]
-		public void InsertSelectRemoveTest()
+		public void TradingLib_DatabaseConnector_InsertSelectRemoveTest()
 		{
 			DBC.InsertIntoDatabase(new DatabaseRow(999, 9999, 99999, 999999)); // Inserts unlikely values into the database
 			List<DatabaseRow> values = DBC.SelectAllFromDatabase(); // Selects every row from the database

@@ -13,7 +13,7 @@ namespace TradingBot.Tests
 	public class InputDataTests
 	{
 		[TestMethod()]
-		public void InputDataTest()
+		public void NeuralNetwork_InputData_InputDataTest()
 		{
 			List<DatabaseRow> input = new List<DatabaseRow>();
 			input.Add(new DatabaseRow(1, 0.1, 0.01, 0.001));

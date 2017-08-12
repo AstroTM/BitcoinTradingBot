@@ -18,7 +18,7 @@ namespace PriceUpdater.Tests
 		/// Checks TimerElapsed() functions correctly
 		/// </summary>
 		[TestMethod()]
-		public void TimerElapsedTest()
+		public void PriceUpdater_TimerElapsedTest()
 		{
 			int timeOfInsert = ApiReader.GetUnixTime();
 
