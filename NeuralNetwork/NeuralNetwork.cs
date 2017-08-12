@@ -63,19 +63,37 @@ namespace TradingBot
 
 		void Forward() // Will be double
 		{
-			foreach (Neuron n in Neurons)
-			{
-				if (n.Layer == 1) // If it's in the input layer
-				{
-					foreach (Synapse s in Synapses)
-					{
-						if (s.Layer == 1 && s.InNeuron == n.Height) // If it's Neuron N
-						{
-							s.InValue = n.OutValue;
-						}
-					}
-				}
-			}
-		}
-	}
+		    #region z2Propogate
+		    foreach (Neuron n in Neurons)
+		    {
+		        if (n.Layer == 1) // If it's in the input layer
+		        {
+		            foreach (Synapse s in Synapses)
+		            {
+		                if (s.Layer == 1 && s.InNeuron == n.Height) // If it's Neuron N
+		                {
+		                    s.InValue = n.OutValue;
+		                }
+		            }
+		        }
+		    }
+            #endregion
+
+		    #region a2Propogate
+		    foreach (Synapse s in Synapses)
+		    {
+		        if (s.Layer == 2)
+		        {
+		            foreach (Neuron n in Neurons)
+		            {
+		                if (n.Layer == 2) // If it's in the input layer
+		                {
+		                    n.InValue.Length += 1;
+		                }
+		            }
+		        }
+		    }
+		    #endregion
+        }
+    }
 }
