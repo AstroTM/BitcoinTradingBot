@@ -20,11 +20,12 @@ namespace TradingBot
 		}
 		private double[] inValue;
 
-		public HiddenNeuron(int layer, int height) : base(layer, height)
+		public HiddenNeuron(int layer, int height, int inputNeurons) : base(layer, height, inputNeurons)
 		{
 			this.Layer = layer;
 			this.Height = height;
-		}
+		    inValue = new double[inputNeurons];
+        }
 
 		public static double Sigmoid(double inValue)
 		{
