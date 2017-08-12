@@ -12,6 +12,12 @@ namespace TradingBot.Tests
 	public class NeuronTests
 	{
 		[TestMethod()]
+		public void SigmoidTest1()
+		{
+			Assert.AreEqual(HiddenNeuron.Sigmoid(0.458), 0.61253961344091512);
+		}
+
+		[TestMethod()]
 		public void SoftmaxTest1()
 		{
 			double[] input = { 1.0, 2.0, 3.0, 4.0, 1.0, 2.0, 3.0 };

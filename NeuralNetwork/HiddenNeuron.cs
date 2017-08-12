@@ -6,36 +6,30 @@ namespace TradingBot
 	{
 		public double value;
 
+		public double[] InValue
+		{
+			get { return InValue; }
+			set
+			{
+				InValue = value;
+				double sumIn = 0;
+				foreach (double val in InValue)
+					sumIn += val;
+				OutValue = Sigmoid(sumIn);
+			}
+		}
+
+		public double OutValue;
+
 		public HiddenNeuron(int layer, int height) : base(layer, height)
 		{
 			this.Layer = layer;
 			this.Height = height;
 		}
 
-		public static double[] Softmax(double[] z)
+		public static double Sigmoid(double inValue)
 		{
-			double[] zExp = new double[z.Length];
-
-			for (int i = 0; i < zExp.Length; i++)
-			{
-				zExp[i] = Math.Exp(z[i]);
-			}
-
-			double sumZExp = 0;
-
-			for (int i = 0; i < zExp.Length; i++)
-			{
-				sumZExp += zExp[i];
-			}
-
-			double[] softmax = new double[z.Length];
-
-			for (int i = 0; i < zExp.Length; i++)
-			{
-				softmax[i] = zExp[i] / sumZExp;
-			}
-
-			return softmax;
+			return 1 / (1 + Math.Exp(-inValue));
 		}
 	}
 }

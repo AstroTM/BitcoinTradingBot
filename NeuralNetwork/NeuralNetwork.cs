@@ -40,5 +40,22 @@ namespace TradingBot
 		{
 			InputData X = new InputData(inputAsDatabaseRows);
 		}
+
+		void Forward() // Will be double
+		{
+			foreach (Neuron n in Neurons)
+			{
+				if (n.Layer == 1) // If it's in the input layer
+				{
+					foreach (Synapse s in Synapses)
+					{
+						if (s.Layer == 1 && s.InNeuron == n.Height) // If it's Neuron N
+						{
+							s.InValue = n.OutValue;
+						}
+					}
+				}
+			}
+		}
 	}
 }

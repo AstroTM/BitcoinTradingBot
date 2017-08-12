@@ -2,7 +2,7 @@
 {
 	internal class InputNeuron : Neuron
 	{
-		public double value;
+		public double OutValue;
 
 		public InputNeuron(int layer, int height) : base(layer, height)
 		{

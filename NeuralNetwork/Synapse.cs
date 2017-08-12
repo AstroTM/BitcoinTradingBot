@@ -4,20 +4,31 @@ namespace TradingBot
 {
 	public class Synapse
 	{
-		public int layer;
-		public int inNeuron;
-		public int outNeuron;
+		public int Layer;
+		public int InNeuron;
+		public int OutNeuron;
 
-		public double weight;
+		public double Weight;
+
+		public double InValue
+		{
+			get { return InValue; }
+			set
+			{
+				InValue = value;
+				OutValue = Weight * value;
+			}
+		}
+		public double OutValue { get; private set; }
 
 		public Synapse(int layer, int inNeuron, int outNeuron)
 		{
-			this.layer = layer;
-			this.inNeuron = inNeuron;
-			this.outNeuron = outNeuron;
+			this.Layer = layer;
+			this.InNeuron = inNeuron;
+			this.OutNeuron = outNeuron;
 
 			Random r = new Random(layer * inNeuron * outNeuron); // Makes it a bit more random...
-			this.weight = r.NextDouble(); // Random number between 0.0 and 1.0
+			this.Weight = r.NextDouble(); // Random number between 0.0 and 1.0
 		}
 	}
 }
