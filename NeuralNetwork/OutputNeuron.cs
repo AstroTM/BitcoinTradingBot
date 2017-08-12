@@ -5,16 +5,19 @@ namespace TradingBot
 {
 	public class OutputNeuron : Neuron
 	{
-		public double[] InValue
+		public override double[] InValue
 		{
-			get { return InValue; }
+			get { return inValue; }
 			set
 			{
-				InValue = value;
-				double[] outs = Softmax(InValue);
-				OutValue = outs.Sum();
+				inValue = value;
+				double sumIn = 0;
+				foreach (double val in inValue)
+					sumIn += val;
+				OutValue = Sigmoid(sumIn);
 			}
 		}
+		private double[] inValue;
 
 		public OutputNeuron(int layer, int height) : base(layer, height)
 		{
@@ -22,6 +25,12 @@ namespace TradingBot
 			this.Height = height;
 		}
 
+		public static double Sigmoid(double inValue)
+		{
+			return 1 / (1 + Math.Exp(-inValue));
+		}
+
+		// Currently not used: If anyone knows how to use this for the last layer activation, please help.
 		public static double[] Softmax(double[] z)
 		{
 			double[] zExp = new double[z.Length];

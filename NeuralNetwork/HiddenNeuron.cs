@@ -6,18 +6,19 @@ namespace TradingBot
 	{
 		public double value;
 
-		public double[] InValue
+		public override double[] InValue
 		{
-			get { return InValue; }
+			get { return inValue; }
 			set
 			{
-				InValue = value;
+				inValue = value;
 				double sumIn = 0;
-				foreach (double val in InValue)
+				foreach (double val in inValue)
 					sumIn += val;
 				OutValue = Sigmoid(sumIn);
 			}
 		}
+		private double[] inValue;
 
 		public HiddenNeuron(int layer, int height) : base(layer, height)
 		{
