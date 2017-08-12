@@ -19,12 +19,12 @@ namespace TradingBot
 			Synapses = new List<Synapse>();
 			Neurons = new List<Neuron>();
 
-			for (int i = 1; i < InputLayerSize; i++)
+			for (int i = 1; i <= InputLayerSize; i++)
 				Neurons.Add(new InputNeuron(1, i, 1));
-			for (int i = 1; i < HiddenLayerSize; i++)
-				Neurons.Add(new HiddenNeuron(1, i, InputLayerSize));
-			for (int i = 1; i < OutputLayerSize; i++)
-				Neurons.Add(new OutputNeuron(1, i, HiddenLayerSize));
+			for (int i = 1; i <= HiddenLayerSize; i++)
+				Neurons.Add(new HiddenNeuron(2, i, InputLayerSize));
+			for (int i = 1; i <= OutputLayerSize; i++)
+				Neurons.Add(new OutputNeuron(3, i, HiddenLayerSize));
 
 			// Create first layer synapses
 			for (int i = 1; i <= InputLayerSize; i++)
@@ -82,13 +82,13 @@ namespace TradingBot
 		    #region a2Propogate
 		    foreach (Synapse s in Synapses)
 		    {
-		        if (s.Layer == 2)
+		        if (s.Layer == 1)
 		        {
 		            foreach (Neuron n in Neurons)
 		            {
 		                if (n.Layer == 2) // If it's in the hidden layer
 		                {
-		                    n.InValue[s.InNeuron] = s.OutValue;
+		                    n.InValue[s.InNeuron - 1] = s.OutValue;
 		                }
 		            }
 		        }
