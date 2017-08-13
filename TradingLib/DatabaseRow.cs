@@ -4,18 +4,8 @@
 	/// Holds the data of a single row of the database.
 	/// </summary>
 	public class DatabaseRow
-    {
-        public double date;
-        public double price;
-        public double bid;
-        public double sizeBid;
-        public double volBid;
-        public double ask;
-        public double sizeAsk;
-        public double volAsk;
-        public double percChange;
-        public double high;
-        public double low;
+	{
+	    public double[] data;
 
 		public DatabaseRow(
 		    double date,
@@ -30,17 +20,17 @@
 	        double high,
 	        double low)
 		{
-		    this.date = date;
-		    this.price = price;
-		    this.bid = bid;
-		    this.sizeBid = sizeBid;
-		    this.volBid = volBid;
-		    this.ask = ask;
-		    this.sizeAsk = sizeAsk;
-		    this.volAsk = volAsk;
-		    this.percChange = percChange;
-		    this.high = high;
-		    this.low = low;
+		    data[0] = date;
+		    data[1] = price;
+		    data[2] = bid;
+		    data[3] = sizeBid;
+		    data[4] = volBid;
+		    data[5] = ask;
+		    data[6] = sizeAsk;
+		    data[7] = volAsk;
+		    data[8] = percChange;
+		    data[9] = high;
+		    data[10] = low;
 		}
 	}
 }
