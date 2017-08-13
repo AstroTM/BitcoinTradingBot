@@ -41,17 +41,17 @@ namespace TradingBot
                 }
             }
 
-			double[,] input = new double[inputAsDatabaseRows.Count, 4];
+			double[,] input = new double[inputAsDatabaseRows.Count, 11];
 			for (int i = 0; i < inputAsDatabaseRows.Count; i++)
 			{
 			    for (int j = 0; j < inputAsDatabaseRows[i].data.Length; j++)
 			    {
-			        inputAsDatabaseRows[i].data[j] = inputAsDatabaseRows[i].data[j]; // Idk what this does it needs to get commented up
+			        input[i, j] = inputAsDatabaseRows[i].data[j];
 			    }
             }
 
-			xTrain = new double[thirdLength * 2, 4];
-			xTest = new double[thirdLength, 4];
+			xTrain = new double[thirdLength * 2, 11];
+			xTest = new double[thirdLength, 11];
 
 			for (int i = 0; i < inputAsDatabaseRows.Count; i++)
 			{
