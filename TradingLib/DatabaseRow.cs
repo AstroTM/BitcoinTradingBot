@@ -16,7 +16,6 @@
         public double percChange;
         public double high;
         public double low;
-        public double volume;
 
 		public DatabaseRow(
 		    double date,
@@ -29,8 +28,7 @@
 		    double volAsk,
             double percChange,
 	        double high,
-	        double low,
-	        double volume)
+	        double low)
 		{
 		    this.date = date;
 		    this.price = price;
@@ -43,7 +41,6 @@
 		    this.percChange = percChange;
 		    this.high = high;
 		    this.low = low;
-		    this.volume = volume;
 		}
 	}
 }

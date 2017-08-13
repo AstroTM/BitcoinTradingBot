@@ -63,8 +63,7 @@ namespace TradingLib
 				    reader.GetDouble(7),
 				    reader.GetDouble(8),
 				    reader.GetDouble(9),
-				    reader.GetDouble(10),
-				    reader.GetDouble(11))); // Add a row to the output list
+				    reader.GetDouble(10))); // Add a row to the output list
 			}
 
 			return output;
