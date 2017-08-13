@@ -12,7 +12,7 @@ namespace TradingBot
 
 		public InputData(List<DatabaseRow> inputAsDatabaseRows)
 		{
-            max = new double[11];
+            max = new double[inputAsDatabaseRows[0].data.Length];
 		    max[0] = 2147483647;
 
             // Makes sure number of inputs is a multiple of 3, so that it splits into arrays neatly.
@@ -41,7 +41,7 @@ namespace TradingBot
                 }
             }
 
-			double[,] input = new double[inputAsDatabaseRows.Count, 11];
+			double[,] input = new double[inputAsDatabaseRows.Count, inputAsDatabaseRows[0].data.Length];
 			for (int i = 0; i < inputAsDatabaseRows.Count; i++)
 			{
 			    for (int j = 0; j < inputAsDatabaseRows[i].data.Length; j++)
@@ -50,8 +50,8 @@ namespace TradingBot
 			    }
             }
 
-			xTrain = new double[thirdLength * 2, 11];
-			xTest = new double[thirdLength, 11];
+			xTrain = new double[thirdLength * 2, inputAsDatabaseRows[0].data.Length];
+			xTest = new double[thirdLength, inputAsDatabaseRows[0].data.Length];
 
 			for (int i = 0; i < inputAsDatabaseRows.Count; i++)
 			{

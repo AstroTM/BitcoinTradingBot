@@ -21,7 +21,7 @@ namespace TradingLib.Tests
 		/// Check selecting the first row from the database yields the correct result
 		/// </summary>
 		[TestMethod()]
-		public void TradingLib_DatabaseConnector_SelectAllFromDatabaseTest()
+		public void TradingLib_DatabaseConnector_FirstDatabaseSelect()
 		{
 			List<DatabaseRow> Rows = DBC.SelectAllFromDatabase(); // Selects every row from the database
 
