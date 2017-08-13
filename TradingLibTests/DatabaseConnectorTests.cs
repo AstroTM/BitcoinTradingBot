@@ -46,7 +46,7 @@ namespace TradingLib.Tests
 		public void TradingLib_DatabaseConnector_InsertSelectRemoveTest()
 		{
 		    DatabaseRow expectedDatabaseRow = new DatabaseRow(
-		        1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11);
+		        1, 2, 3, 4, 5, 6, 7);
 
             DBC.InsertIntoDatabase(expectedDatabaseRow); // Inserts unlikely values into the database
 			List<DatabaseRow> values = DBC.SelectAllFromDatabase(); // Selects every row from the database
