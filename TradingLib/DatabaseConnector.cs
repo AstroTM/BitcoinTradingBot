@@ -33,11 +33,7 @@ namespace TradingLib
                 Convert.ToString(input.data[3]) + ", " +
                 Convert.ToString(input.data[4]) + ", " +
                 Convert.ToString(input.data[5]) + ", " +
-                Convert.ToString(input.data[6]) + ", " +
-                Convert.ToString(input.data[7]) + ", " +
-                Convert.ToString(input.data[8]) + ", " +
-                Convert.ToString(input.data[9]) + ", " +
-                Convert.ToString(input.data[11]) + ");";
+                Convert.ToString(input.data[6]) + ");";
 
 			SQLiteCommand command = new SQLiteCommand(sql, connection); // Creates the command
 			command.ExecuteNonQuery(); // Executes the command
