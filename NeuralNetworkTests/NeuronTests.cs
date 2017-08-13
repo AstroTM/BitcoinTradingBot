@@ -32,6 +32,7 @@ namespace TradingBot.Tests
 		{
 			OutputNeuron ON = new OutputNeuron(1, 1, 3);
 			ON.InValue = new double[] { 0.20202, 0.30303, 0.40404 };
+            ON.Propogate();
 			Assert.AreEqual(ON.OutValue, 0.71281391251731641);
 		}
 
