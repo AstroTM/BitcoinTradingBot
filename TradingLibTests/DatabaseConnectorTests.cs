@@ -38,17 +38,31 @@ namespace TradingLib.Tests
 		[TestMethod()]
 		public void TradingLib_DatabaseConnector_InsertSelectRemoveTest()
 		{
-			DBC.InsertIntoDatabase(new DatabaseRow(999, 9999, 99999, 999999)); // Inserts unlikely values into the database
+		    DatabaseRow expectedDatabaseRow = new DatabaseRow(
+		        1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11);
+
+            DBC.InsertIntoDatabase(expectedDatabaseRow); // Inserts unlikely values into the database
 			List<DatabaseRow> values = DBC.SelectAllFromDatabase(); // Selects every row from the database
 
 			bool hasBeenFound = false; // False until found
 
 			foreach (DatabaseRow row in values) // Iterates through every row
 			{
-				if (row.date == 999 & row.price == 9999 & row.volBid == 99999 & row.volAsk == 999999) // If the row is the values previously inserted
+				if (row == expectedDatabaseRow) // If the row is the values previously inserted
 				{
 					hasBeenFound = true; // Test is passed
-					string sql = "DELETE FROM prices WHERE date=999 AND price=9999 AND v_bid=99999 AND v_ask=999999;"; // Create sql to delete the row
+				    string sql = "DELETE FROM prices WHERE " +
+				                 "date=1 AND " +
+				                 "price=2 AND " +
+				                 "bid=3 AND " +
+				                 "bid_size=4 AND " +
+				                 "bid_v=5 AND " +
+				                 "ask=6 AND " +
+				                 "ask_size=7 AND " +
+				                 "ask_v=8 AND " +
+				                 "change_perc=9 AND " +
+				                 "high=10 AND " +
+				                 "low=11"; // Create sql to delete the row
 					SQLiteCommand command = new SQLiteCommand(sql, DBC.connection); // Create the command
 					command.ExecuteNonQuery(); // Execute the command
 				}
