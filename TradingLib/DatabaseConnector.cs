@@ -27,10 +27,17 @@ namespace TradingLib
 		public void InsertIntoDatabase(DatabaseRow input)
 		{
 			string sql = "INSERT INTO prices VALUES (" + // Creates sql string to be executed on the database
-				Convert.ToString(input.date) + ", " + 
-				Convert.ToString(input.price) + ", " + 
-				Convert.ToString(input.volBid) + ", " + 
-				Convert.ToString(input.volAsk) + ");";
+                Convert.ToString(input.data[0]) + ", " +
+                Convert.ToString(input.data[1]) + ", " +
+                Convert.ToString(input.data[2]) + ", " +
+                Convert.ToString(input.data[3]) + ", " +
+                Convert.ToString(input.data[4]) + ", " +
+                Convert.ToString(input.data[5]) + ", " +
+                Convert.ToString(input.data[6]) + ", " +
+                Convert.ToString(input.data[7]) + ", " +
+                Convert.ToString(input.data[8]) + ", " +
+                Convert.ToString(input.data[9]) + ", " +
+                Convert.ToString(input.data[11]) + ");";
 
 			SQLiteCommand command = new SQLiteCommand(sql, connection); // Creates the command
 			command.ExecuteNonQuery(); // Executes the command
