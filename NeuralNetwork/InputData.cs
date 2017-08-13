@@ -29,7 +29,7 @@ namespace TradingBot
 			{
 			    for (int i = 0; i < row.data.Length; i++)
 			    {
-			        if (row.data[i] > max[1]) max[1] = row.data[i];
+			        if (row.data[i] > max[i]) max[i] = row.data[i];
                 }
             }
 
@@ -37,7 +37,7 @@ namespace TradingBot
 			{
 			    for (int j = 0; j < inputAsDatabaseRows[i].data.Length; j++)
 			    {
-			        inputAsDatabaseRows[i].data[j] = inputAsDatabaseRows[i].data[j] / max[0];
+			        inputAsDatabaseRows[i].data[j] = inputAsDatabaseRows[i].data[j] / max[j];
                 }
             }
 
@@ -46,9 +46,9 @@ namespace TradingBot
 			{
 			    for (int j = 0; j < inputAsDatabaseRows[i].data.Length; j++)
 			    {
-			        inputAsDatabaseRows[i].data[j] = inputAsDatabaseRows[i].data[j];
-                }
-			}
+			        inputAsDatabaseRows[i].data[j] = inputAsDatabaseRows[i].data[j]; // Idk what this does it needs to get commented up
+			    }
+            }
 
 			xTrain = new double[thirdLength * 2, 4];
 			xTest = new double[thirdLength, 4];
@@ -57,17 +57,17 @@ namespace TradingBot
 			{
 				if (i < thirdLength * 2)
 				{
-					xTrain[i, 0] = input[i, 0];
-					xTrain[i, 1] = input[i, 1];
-					xTrain[i, 2] = input[i, 2];
-					xTrain[i, 3] = input[i, 3];
+				    for (int j = 0; j < inputAsDatabaseRows[i].data.Length; j++)
+				    {
+				        xTrain[i, j] = input[i, j];
+				    }
 				}
 				else
 				{
-					xTest[i - thirdLength * 2, 0] = input[i, 0];
-					xTest[i - thirdLength * 2, 1] = input[i, 1];
-					xTest[i - thirdLength * 2, 2] = input[i, 2];
-					xTest[i - thirdLength * 2, 3] = input[i, 3];
+				    for (int j = 0; j < inputAsDatabaseRows[i].data.Length; j++)
+				    {
+				        xTest[i - thirdLength * 2, j] = input[i, j];
+                    }
 				}
 			}
 		}

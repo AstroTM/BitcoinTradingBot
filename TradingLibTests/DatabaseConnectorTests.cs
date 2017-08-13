@@ -25,12 +25,19 @@ namespace TradingLib.Tests
 		{
 			List<DatabaseRow> Rows = DBC.SelectAllFromDatabase(); // Selects every row from the database
 
-			// Checks the first one is as expected
-			Assert.AreEqual(Rows[0].date, 1502316284);
-			Assert.AreEqual(Rows[0].price, 0.090076);
-			Assert.AreEqual(Rows[0].volBid, 10.6998);
-			Assert.AreEqual(Rows[0].volAsk, 18.175939);
-		}
+            // Checks the first one is as expected
+		    Assert.AreEqual(Rows[0].data[0], 1502645719.2494643);
+		    Assert.AreEqual(Rows[0].data[1], 0.073035);
+		    Assert.AreEqual(Rows[0].data[2], 42.059763350000004);
+		    Assert.AreEqual(Rows[0].data[3], 22.40682312);
+		    Assert.AreEqual(Rows[0].data[4], 0.073016);
+		    Assert.AreEqual(Rows[0].data[5], 9.95207781);
+		    Assert.AreEqual(Rows[0].data[6], 0.073254);
+		    Assert.AreEqual(Rows[0].data[7], 1);
+		    Assert.AreEqual(Rows[0].data[8], 1);
+		    Assert.AreEqual(Rows[0].data[9], 1);
+		    Assert.AreEqual(Rows[0].data[10], 1);
+        }
 
 		/// <summary>
 		/// Check values can be correctly inserted, selected and removed from the database.

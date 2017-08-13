@@ -35,7 +35,7 @@ namespace PriceUpdater.Tests
 
 			foreach (DatabaseRow row in values) // Iterates through every row
 			{
-				if (Convert.ToInt32(row.date) == Program.LastInsert) // If the row is the values previously inserted
+				if (Convert.ToInt32(row.data[0]) == Program.LastInsert) // If the row is the values previously inserted
 				{
 					hasBeenFound = true; // Test is passed
 					string sql = "DELETE FROM prices WHERE date=" + Program.LastInsert + ";"; // Create sql to delete the row

@@ -20,6 +20,7 @@
 	        double high,
 	        double low)
 		{
+            data = new double[11];
 		    data[0] = date;
 		    data[1] = price;
 		    data[2] = bid;
