@@ -33,19 +33,44 @@ def tick():
     v_bid = sum([bid for bid in bids])
     v_ask = sum([ask for ask in asks])
 
+"""
+    try:
+        price_stat = last_price / price
+    except UnboundLocalError:
+        last_price = price
+        price_stat = 1
+    price(price_stat)
+    if(price_stat <= 0.9):
+        expected_result = 0
+    elif(price_stat >= 1.1):
+        expected_result = 1
+    else:
+        price_stat = price_stat - 1
+        price_stat = price_stat * 5
+        expected_result = price_stat + 0.5
+"""
+
     command = 'INSERT INTO prices VALUES (' + \
         str(date) + ', ' + \
         str(price) + ', ' + \
         str(v_bid) + ', ' + \
         str(v_ask) + ', ' + \
-        str(float(ticker[0])) + ', ' + \ # bid
-        str(float(ticker[1])) + ', ' + \ # bid_size
-        str(float(ticker[2])) + ', ' + \ # ask
-        str(float(ticker[3])) + ', ' + \ # ask_size
-        str(float(ticker[5])) + ', ' + \ # change_perc
-        str(float(ticker[8])) + ', ' + \ # high
-        str(float(ticker[9])) + ', ' + \ # low
-        str(float(ticker[7])) + ');'     # volume
+        str(float(ticker[0])) + ', ' + \
+        str(float(ticker[1])) + ', ' + \
+        str(float(ticker[2])) + ', ' + \
+        str(float(ticker[3])) + ', ' + \
+        str(float(ticker[5])) + ', ' + \
+        str(float(ticker[8])) + ', ' + \
+        str(float(ticker[9])) + ', ' + \
+        str(float(ticker[7])) ');'
+        # bid
+        # bid_size
+        # ask
+        # ask_size
+        # change_perc
+        # high
+        # low
+        # volume
     c.execute(command)
     #print(date, price, v_bid, v_ask)
 
@@ -54,7 +79,11 @@ def tick():
     # Save (commit) the changes
     conn.commit()
 
+    last_price = price
+
 def main():
+    global last_price
+
     tick()
 
     """Run tick() at the interval of every ten seconds."""
