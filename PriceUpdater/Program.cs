@@ -58,10 +58,15 @@ namespace PriceUpdater
 					volAsk += trade.Amount;
 			}
 
-			DatabaseRow row = new DatabaseRow(LastInsert, ticker.lastPrice, volBid, volAsk);
-			DBC.InsertIntoDatabase(row);
+            //DatabaseRow row = new DatabaseRow(
+            //    LastInsert, 
+            //    ticker.lastPrice, 
+            //    volBid, 
+            //    volAsk);
+            //DBC.InsertIntoDatabase(row);
 
-			Console.WriteLine("Inserted.");
-		}
+            //Console.WriteLine("Inserted.");
+		    Console.WriteLine("Skipping insertion, no longer implemented in C#. Speak to me if you'd like me to reimplement this, it shouldn't take too long.");
+        }
 	}
 }
