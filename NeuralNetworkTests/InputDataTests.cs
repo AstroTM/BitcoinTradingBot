@@ -16,13 +16,13 @@ namespace TradingBot.Tests
 		public void NeuralNetwork_InputData_InputDataTest()
 		{
 			List<DatabaseRow> input = new List<DatabaseRow>();
-			input.Add(new DatabaseRow(1, 0.1, 0.01, 0.001));
-			input.Add(new DatabaseRow(2, 0.2, 0.02, 0.002));
-			input.Add(new DatabaseRow(3, 0.3, 0.03, 0.003));
-			input.Add(new DatabaseRow(4, 0.4, 0.04, 0.004));
-			input.Add(new DatabaseRow(5, 0.5, 0.05, 0.005));
-			input.Add(new DatabaseRow(6, 0.6, 0.06, 0.006));
-			input.Add(new DatabaseRow(7, 0.7, 0.07, 0.007));
+			input.Add(new DatabaseRow(1, 0.1, 0.01, 0.001, 0.0001, 0.00001, 0.000001, 0.0000001, 0.00000001, 0.000000001, 0.0000000001));
+			input.Add(new DatabaseRow(2, 0.2, 0.02, 0.002, 0.0002, 0.00002, 0.000002, 0.0000002, 0.00000002, 0.000000002, 0.0000000002));
+			input.Add(new DatabaseRow(3, 0.3, 0.03, 0.003, 0.0003, 0.00003, 0.000003, 0.0000003, 0.00000003, 0.000000003, 0.0000000003));
+			input.Add(new DatabaseRow(4, 0.4, 0.04, 0.004, 0.0004, 0.00004, 0.000004, 0.0000004, 0.00000004, 0.000000004, 0.0000000004));
+			input.Add(new DatabaseRow(5, 0.5, 0.05, 0.005, 0.0005, 0.00005, 0.000005, 0.0000005, 0.00000005, 0.000000005, 0.0000000005));
+			input.Add(new DatabaseRow(6, 0.6, 0.06, 0.006, 0.0006, 0.00006, 0.000006, 0.0000006, 0.00000006, 0.000000006, 0.0000000006));
+			input.Add(new DatabaseRow(7, 0.7, 0.07, 0.007, 0.0007, 0.00007, 0.000007, 0.0000007, 0.00000007, 0.000000007, 0.0000000007));
 
 			InputData data = new InputData(input);
 
