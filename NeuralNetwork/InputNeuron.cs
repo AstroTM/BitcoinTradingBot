@@ -21,11 +21,11 @@
 	        OutValue = InValue[0];
 	    }
 
-        public InputNeuron(int layer, int height, int inputNeurons) : base(layer, height, inputNeurons)
+        public InputNeuron(int layer, int height, int inputSynapses) : base(layer, height, inputSynapses)
 		{
 			this.Layer = layer;
 			this.Height = height;
-		    inValue = new double[inputNeurons];
+		    inValue = new double[inputSynapses];
 		}
 	}
 }

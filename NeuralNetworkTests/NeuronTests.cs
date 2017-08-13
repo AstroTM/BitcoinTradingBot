@@ -14,7 +14,7 @@ namespace TradingBot.Tests
 		[TestMethod()]
 		public void NeuralNetwork_Neuron_InputNeuronIOTest()
 		{
-			InputNeuron IN = new InputNeuron(1, 1);
+			InputNeuron IN = new InputNeuron(1, 1, 1);
 			IN.InValue = new double[] { 0.010101 };
 			Assert.AreEqual(IN.OutValue, 0.010101);
 		}
@@ -22,7 +22,7 @@ namespace TradingBot.Tests
 		[TestMethod()]
 		public void NeuralNetwork_Neuron_HiddenNeuronIOTest()
 		{
-			HiddenNeuron HN = new HiddenNeuron(1, 1);
+			HiddenNeuron HN = new HiddenNeuron(1, 1, 3);
 			HN.InValue = new double[] { 0.10101, 0.20202, 0.30303 };
 			Assert.AreEqual(HN.OutValue, 0.64704151179442626);
 		}
@@ -30,7 +30,7 @@ namespace TradingBot.Tests
 		[TestMethod()]
 		public void NeuralNetwork_Neuron_OutputNeuronIOTest()
 		{
-			OutputNeuron ON = new OutputNeuron(1, 1);
+			OutputNeuron ON = new OutputNeuron(1, 1, 3);
 			ON.InValue = new double[] { 0.20202, 0.30303, 0.40404 };
 			Assert.AreEqual(ON.OutValue, 0.71281391251731641);
 		}
