@@ -36,10 +36,11 @@ namespace TradingBot
 					Synapses.Add(new Synapse(2, i, j));
 		}
 
-		public void TrainNetwork(List<DatabaseRow> inputAsDatabaseRows)
+		public void TrainNetwork(List<DatabaseRow> inputAsDatabaseRows, int TrainLength)
 		{
 			InputData X = new InputData(inputAsDatabaseRows);
 
+            // Set input neurons
 			for (int i = 0; i < X.xTrain.Length / 8; i++)
 			{
 				foreach (Neuron n in Neurons)
@@ -64,11 +65,50 @@ namespace TradingBot
 				}
 
 				double output = Forward();
-
-			    Console.WriteLine(
-                    "Input variables: {0:F20}, {1:F20}, {2:F20}, {3:F20}. Output: {4:F20}",
-			        X.xTrain[i, 0], X.xTrain[i, 1], X.xTrain[i, 2], X.xTrain[i, 3], output);
 			}
+
+		    for (int i = 0; i < TrainLength; i++)
+		    {
+		        double prevCost = Cost(X);
+
+                double[,] improvments = new double[Synapses.Count, 2];
+		        for(int j = 0; j < Synapses.Count; j++)
+		        {
+		            Synapses[j].Weight += 0.1;
+
+		            improvments[j, 0] = prevCost - Cost(X);
+
+		            Synapses[j].Weight -= 0.2;
+
+		            improvments[j, 1] = prevCost - Cost(X);
+
+		            Synapses[j].Weight += 0.1;
+                }
+
+                // Get biggest improvment
+		        int x = 0;
+		        int y = 0;
+                for (int j = 0; j < improvments.Length / 2; j++)
+                {
+                    if (improvments[j, 0] > improvments[x, y])
+                    {
+                        x = j;
+                        y = 0;
+                    }
+                    if (improvments[j, 1] > improvments[x, y])
+                    {
+                        x = j;
+                        y = 1;
+                    }
+                }
+
+                Console.WriteLine("Biggest improvement: " + x + ":" + y + ", " + Cost(X));
+
+		        if (y == 0)
+		            Synapses[x].Weight += 0.01;
+		        if (y == 1)
+		            Synapses[x].Weight -= 0.01;
+            }
 
             Console.WriteLine(Cost(X));
 		}
