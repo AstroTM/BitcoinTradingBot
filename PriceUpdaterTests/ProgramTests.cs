@@ -15,9 +15,9 @@ namespace PriceUpdater.Tests
 	public class PriceUpdaterTests
 	{
 		/// <summary>
-		/// Checks TimerElapsed() functions correctly
+		/// Checks TimerElapsed() functions correctly. Currently non-functional, use the python price updater instead.
 		/// </summary>
-		[TestMethod()]
+		//[TestMethod()]
 		public void PriceUpdater_TimerElapsedTest()
 		{
 			int timeOfInsert = ApiReader.GetUnixTime();
