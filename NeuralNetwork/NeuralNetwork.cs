@@ -40,7 +40,7 @@ namespace TradingBot
 		{
 			InputData X = new InputData(inputAsDatabaseRows);
 
-			for (int i = 0; i < X.xTrain.Length / 4; i++)
+			for (int i = 0; i < X.xTrain.Length / 8; i++)
 			{
 				foreach (Neuron n in Neurons)
 				{
@@ -63,9 +63,37 @@ namespace TradingBot
                     "Input variables: {0:F20}, {1:F20}, {2:F20}, {3:F20}. Output: {4:F20}",
 			        X.xTrain[i, 0], X.xTrain[i, 1], X.xTrain[i, 2], X.xTrain[i, 3], output);
 			}
+
+            Console.WriteLine(Cost(X));
 		}
 
-		double Forward() // Will be double
+        // Calculates how accurate network currently is
+	    double Cost(InputData X)
+	    {
+	        double cost = 0;
+
+	        for (int i = 0; i < X.xTrain.Length / 8; i++)
+	        {
+	            double output = Forward(); // Propogate network
+
+	            double e = Math.Abs(output - X.xTrain[i, 7]); // Difference between yHat and y
+
+                cost += (e * e) / 2; // 1/2 * e^2
+            }
+
+	        for (int i = 0; i < X.xTest.Length / 8; i++)
+	        {
+	            double output = Forward(); // Propogate network
+
+                double e = Math.Abs(output - X.xTest[i, 7]); // Difference between yHat and y
+
+                cost += (e * e) / 2; // 1/2 * e^2
+	        }
+
+	        return cost;
+	    }
+
+		double Forward()
 		{
 		    #region z2Propogate
 		    foreach (Neuron n in Neurons)
