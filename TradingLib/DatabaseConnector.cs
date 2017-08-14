@@ -27,10 +27,13 @@ namespace TradingLib
 		public void InsertIntoDatabase(DatabaseRow input)
 		{
 			string sql = "INSERT INTO prices VALUES (" + // Creates sql string to be executed on the database
-				Convert.ToString(input.date) + ", " + 
-				Convert.ToString(input.price) + ", " + 
-				Convert.ToString(input.volBid) + ", " + 
-				Convert.ToString(input.volAsk) + ");";
+                Convert.ToString(input.data[0]) + ", " +
+                Convert.ToString(input.data[1]) + ", " +
+                Convert.ToString(input.data[2]) + ", " +
+                Convert.ToString(input.data[3]) + ", " +
+                Convert.ToString(input.data[4]) + ", " +
+                Convert.ToString(input.data[5]) + ", " +
+                Convert.ToString(input.data[6]) + ");";
 
 			SQLiteCommand command = new SQLiteCommand(sql, connection); // Creates the command
 			command.ExecuteNonQuery(); // Executes the command
@@ -52,11 +55,14 @@ namespace TradingLib
 
 			while (reader.Read()) // For every row in the result
 			{
-				double date = reader.GetDouble(0);
-				double price = reader.GetDouble(1);
-				double volBid = reader.GetDouble(2);
-				double volAsk = reader.GetDouble(3);
-				output.Add(new DatabaseRow(date, price, volBid, volAsk)); // Add a row to the output list
+				output.Add(new DatabaseRow(
+				    reader.GetDouble(0),
+				    reader.GetDouble(1),
+				    reader.GetDouble(2),
+				    reader.GetDouble(3),
+				    reader.GetDouble(4),
+				    reader.GetDouble(5),
+				    reader.GetDouble(6))); // Add a row to the output list
 			}
 
 			return output;

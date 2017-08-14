@@ -8,15 +8,15 @@ namespace TradingBot
 		public double[,] xTrain;
 		public double[,] xTest;
 
-		public int maxDate = 2147483647;
-		public double maxPrice;
-		public double maxVolAsk;
-		public double maxVolBid;
+	    public double[] max;
 
 		public InputData(List<DatabaseRow> inputAsDatabaseRows)
 		{
-			// Makes sure number of inputs is a multiple of 3, so that it splits into arrays neatly.
-			if (inputAsDatabaseRows.Count % 3 == 1) inputAsDatabaseRows.RemoveAt(0);
+            max = new double[inputAsDatabaseRows[0].data.Length];
+		    max[0] = 2147483647;
+
+            // Makes sure number of inputs is a multiple of 3, so that it splits into arrays neatly.
+            if (inputAsDatabaseRows.Count % 3 == 1) inputAsDatabaseRows.RemoveAt(0);
 			if (inputAsDatabaseRows.Count % 3 == 2)
 			{
 				inputAsDatabaseRows.RemoveAt(0);
@@ -27,46 +27,47 @@ namespace TradingBot
 
 			foreach (DatabaseRow row in inputAsDatabaseRows)
 			{
-				if (row.price > maxPrice) maxPrice = row.price;
-				if (row.volAsk > maxVolAsk) maxVolAsk = row.volAsk;
-				if (row.volBid > maxVolBid) maxVolBid = row.volBid;
-			}
+			    for (int i = 0; i < row.data.Length; i++)
+			    {
+			        if (row.data[i] > max[i]) max[i] = row.data[i];
+                }
+            }
 
 			for (int i = 0; i < inputAsDatabaseRows.Count; i++)
 			{
-				inputAsDatabaseRows[i].date = inputAsDatabaseRows[i].date / maxDate;
-				inputAsDatabaseRows[i].price = inputAsDatabaseRows[i].price / maxPrice;
-				inputAsDatabaseRows[i].volAsk = inputAsDatabaseRows[i].volAsk / maxVolAsk;
-				inputAsDatabaseRows[i].volBid = inputAsDatabaseRows[i].volBid / maxVolBid;
-			}
+			    for (int j = 0; j < inputAsDatabaseRows[i].data.Length; j++)
+			    {
+			        inputAsDatabaseRows[i].data[j] = inputAsDatabaseRows[i].data[j] / max[j];
+                }
+            }
 
-			double[,] input = new double[inputAsDatabaseRows.Count, 4];
+			double[,] input = new double[inputAsDatabaseRows.Count, inputAsDatabaseRows[0].data.Length];
 			for (int i = 0; i < inputAsDatabaseRows.Count; i++)
 			{
-				input[i, 0] = inputAsDatabaseRows[i].date;
-				input[i, 1] = inputAsDatabaseRows[i].price;
-				input[i, 2] = inputAsDatabaseRows[i].volAsk;
-				input[i, 3] = inputAsDatabaseRows[i].volBid;
-			}
+			    for (int j = 0; j < inputAsDatabaseRows[i].data.Length; j++)
+			    {
+			        input[i, j] = inputAsDatabaseRows[i].data[j];
+			    }
+            }
 
-			xTrain = new double[thirdLength * 2, 4];
-			xTest = new double[thirdLength, 4];
+			xTrain = new double[thirdLength * 2, inputAsDatabaseRows[0].data.Length];
+			xTest = new double[thirdLength, inputAsDatabaseRows[0].data.Length];
 
 			for (int i = 0; i < inputAsDatabaseRows.Count; i++)
 			{
 				if (i < thirdLength * 2)
 				{
-					xTrain[i, 0] = input[i, 0];
-					xTrain[i, 1] = input[i, 1];
-					xTrain[i, 2] = input[i, 2];
-					xTrain[i, 3] = input[i, 3];
+				    for (int j = 0; j < inputAsDatabaseRows[i].data.Length; j++)
+				    {
+				        xTrain[i, j] = input[i, j];
+				    }
 				}
 				else
 				{
-					xTest[i - thirdLength * 2, 0] = input[i, 0];
-					xTest[i - thirdLength * 2, 1] = input[i, 1];
-					xTest[i - thirdLength * 2, 2] = input[i, 2];
-					xTest[i - thirdLength * 2, 3] = input[i, 3];
+				    for (int j = 0; j < inputAsDatabaseRows[i].data.Length; j++)
+				    {
+				        xTest[i - thirdLength * 2, j] = input[i, j];
+                    }
 				}
 			}
 		}
