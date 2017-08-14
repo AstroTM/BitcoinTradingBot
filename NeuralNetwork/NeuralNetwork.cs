@@ -279,5 +279,13 @@ namespace TradingBot
 
 	        return output;
 	    }
-    }
+
+	    public void ImportWeights(List<double> weights)
+	    {
+	        for (int i = 0; i < Synapses.Count; i++)
+	        {
+	            Synapses[i].Weight = weights[i];
+	        }
+	    }
+	}
 }

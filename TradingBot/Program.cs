@@ -25,6 +25,8 @@ namespace TradingBot
 
             NeuralNetwork ANN = new NeuralNetwork();
 
+            ANN.ImportWeights(ReadWeights());
+
             List<DatabaseRow> rows = DBC.SelectAllFromDatabase();
 
             ANN.TrainNetwork(rows, 10);
