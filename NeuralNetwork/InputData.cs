@@ -57,9 +57,9 @@ namespace TradingBot
 
             // Add scoring variable
             // This will break if the price goes over 2x in 30 seconds - quite unlikely.
-		    for (int i = 1; i < inputAsDatabaseRows.Count; i++)
+		    for (int i = 0; i < inputAsDatabaseRows.Count - 1; i++)
 		    {
-		        double rawscore = input[i, 1] / input[i - 1, 1];
+		        double rawscore = input[i + 1, 1] / input[i, 1];
 		        input[i, inputAsDatabaseRows[0].data.Length] = rawscore / 2;
 		    }
 
@@ -71,14 +71,14 @@ namespace TradingBot
 			{
 				if (i < thirdLength * 2)
 				{
-				    for (int j = 0; j < inputAsDatabaseRows[i].data.Length; j++)
+				    for (int j = 0; j < inputAsDatabaseRows[i].data.Length + 1; j++)
 				    {
 				        xTrain[i, j] = input[i, j];
 				    }
 				}
 				else
 				{
-				    for (int j = 0; j < inputAsDatabaseRows[i].data.Length; j++)
+				    for (int j = 0; j < inputAsDatabaseRows[i].data.Length + 1; j++)
 				    {
 				        xTest[i - thirdLength * 2, j] = input[i, j];
                     }
