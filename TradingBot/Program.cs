@@ -29,10 +29,10 @@ namespace TradingBot
 
             ANN.TrainNetwork(rows, 10);
 
-            double[] weights = new double[ANN.Synapses.Count];
+            List<double> weights = new List<double>();
             for (int i = 0; i < ANN.Synapses.Count; i++)
             {
-                weights[i] = ANN.Synapses[i].Weight;
+                weights.Add(ANN.Synapses[i].Weight);
             }
 
             WriteWeights(weights);
@@ -40,7 +40,7 @@ namespace TradingBot
             Console.ReadLine();
         }
 
-        static void WriteWeights(double[] weights)
+        static void WriteWeights(List<double> weights)
         {
             string WeightSaveString = @"C:\Users\matth\OneDrive\Documents\Visual Studio 2017\Projects\TradingBot\weights.txt";
 
@@ -58,6 +58,19 @@ namespace TradingBot
                     file.WriteLine(weight);
                 }
             }
+        }
+
+        static List<double> ReadWeights()
+        {
+            string WeightSaveString = @"C:\Users\matth\OneDrive\Documents\Visual Studio 2017\Projects\TradingBot\weights.txt";
+            List<double> output = new List<double>();
+
+            foreach(string line in File.ReadLines(WeightSaveString))
+            {
+                output.Add(Convert.ToDouble(line));
+            }
+
+            return output;
         }
     }
 }
