@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Xml.XPath;
 using TradingLib;
 
@@ -72,7 +73,7 @@ namespace TradingBot
 		        double prevCost = Cost(X);
 
                 double[,] improvments = new double[Synapses.Count, 2];
-		        for(int j = 0; j < Synapses.Count; j++)
+		        Parallel.For(0, Synapses.Count, j =>
 		        {
 		            Synapses[j].Weight += 0.1;
 
@@ -83,7 +84,7 @@ namespace TradingBot
 		            improvments[j, 1] = prevCost - Cost(X);
 
 		            Synapses[j].Weight += 0.1;
-                }
+		        });
 
                 // Get biggest improvment
 		        int x = 0;
@@ -102,7 +103,7 @@ namespace TradingBot
                     }
                 }
 
-                Console.WriteLine("Biggest improvement: " + x + ":" + y + ", " + Cost(X));
+                Console.WriteLine("Row " + i + ", Biggest improvement: " + x + ":" + y + ", " + Cost(X));
 
 		        if (y == 0)
 		            Synapses[x].Weight += 0.01;
@@ -112,6 +113,8 @@ namespace TradingBot
 
             Console.WriteLine(Cost(X));
 		}
+
+
 
         // Calculates how accurate network currently is
 	    double Cost(InputData X)

@@ -29,7 +29,7 @@ namespace TradingBot
 
             List<DatabaseRow> rows = DBC.SelectAllFromDatabase();
 
-            ANN.TrainNetwork(rows, 10);
+            ANN.TrainNetwork(rows, 1000);
 
             List<double> weights = new List<double>();
             for (int i = 0; i < ANN.Synapses.Count; i++)
