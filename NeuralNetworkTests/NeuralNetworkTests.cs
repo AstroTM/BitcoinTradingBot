@@ -11,12 +11,6 @@ namespace TradingBot.Tests
 	[TestClass()]
 	public class NeuralNetworkTests
 	{
-		private NeuralNetwork ANN = new NeuralNetwork();
 
-		[TestMethod()]
-		public void TrainNetworkTest()
-		{
-			Assert.Fail();
-		}
 	}
 }

@@ -18,7 +18,7 @@ namespace TradingLib.Tests
 		/// Checks GetBitfinexCurrencyPair() functions as expected
 		/// </summary>
 		[TestMethod()]
-		public void GetBitfinexCurrencyPairTest()
+		public void TradingLib_CurrencyPair_GetBitfinexCurrencyPairTest()
 		{
 			CurrencyPair cp = new CurrencyPair(0, 1); // Creates the currency pair USD/BTC
 			Assert.AreEqual(cp.GetBitfinexCurrencyPair(), "tBTCUSD"); // Gets the Bitfinex currency pair and checks it returns 'tBTCUSD'
@@ -29,7 +29,7 @@ namespace TradingLib.Tests
 		/// </summary>
 		[TestMethod()]
 		[ExpectedException(typeof(UnknownCurrencyPairException), "Currency pair (1, 1) unknown.")]
-		public void ThrowsCurrencyPairException()
+		public void TradingLib_CurrencyPair_ThrowsCurrencyPairException()
 		{
 			CurrencyPair cp = new CurrencyPair(1, 1); // Creates the unknown currency pair USD/USD
 			cp.GetBitfinexCurrencyPair(); // Gets the Bitfinex currency pair and checks it throws an exception

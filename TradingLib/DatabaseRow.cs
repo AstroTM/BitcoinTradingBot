@@ -5,17 +5,25 @@
 	/// </summary>
 	public class DatabaseRow
 	{
-		public double date;
-		public double price;
-		public double volBid;
-		public double volAsk;
+	    public double[] data;
 
-		public DatabaseRow(double date, double price, double volBid, double volAsk)
+		public DatabaseRow(
+		    double date,
+		    double price,
+		    double bid,
+		    double ask,
+            double percChange,
+	        double high,
+	        double low)
 		{
-			this.date = date;
-			this.price = price;
-			this.volBid = volBid;
-			this.volAsk = volAsk;
+            data = new double[7];
+		    data[0] = date;
+		    data[1] = price;
+		    data[2] = bid;
+		    data[3] = ask;
+		    data[4] = percChange;
+		    data[5] = high;
+		    data[6] = low;
 		}
 	}
 }
