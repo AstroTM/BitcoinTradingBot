@@ -7,7 +7,7 @@ namespace TradingBot
 {
 	public class NeuralNetwork
 	{
-		public int InputLayerSize = 4;
+		public int InputLayerSize = 7;
 		public int HiddenLayerSize = 16;
 		public int OutputLayerSize = 1;
 
@@ -46,15 +46,21 @@ namespace TradingBot
 				{
 					if (n.Layer == 1)
 					{
-						if (n.Height == 1)
-							n.InValue = new double[] { X.xTrain[i, 0] };
-						if (n.Height == 2)
-							n.InValue = new double[] { X.xTrain[i, 1] };
-						if (n.Height == 3)
-							n.InValue = new double[] { X.xTrain[i, 2] };
-						if (n.Height == 4)
-							n.InValue = new double[] { X.xTrain[i, 3] };
-					}
+					    if (n.Height == 1)
+					        n.InValue = new double[] { X.xTrain[i, 0] };
+					    if (n.Height == 2)
+					        n.InValue = new double[] { X.xTrain[i, 1] };
+					    if (n.Height == 3)
+					        n.InValue = new double[] { X.xTrain[i, 2] };
+					    if (n.Height == 4)
+					        n.InValue = new double[] { X.xTrain[i, 3] };
+					    if (n.Height == 5)
+					        n.InValue = new double[] { X.xTrain[i, 4] };
+					    if (n.Height == 6)
+					        n.InValue = new double[] { X.xTrain[i, 5] };
+					    if (n.Height == 7)
+					        n.InValue = new double[] { X.xTrain[i, 6] };
+                    }
 				}
 
 				double output = Forward();
