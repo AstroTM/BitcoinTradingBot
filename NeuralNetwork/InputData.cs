@@ -23,9 +23,11 @@ namespace TradingBot
 				inputAsDatabaseRows.RemoveAt(1);
 			}
 
-			int thirdLength = inputAsDatabaseRows.Count / 3; // Splits at 2/3 of the data
+		    // Splits at 2/3 of the data
+            int thirdLength = inputAsDatabaseRows.Count / 3;
 
-			foreach (DatabaseRow row in inputAsDatabaseRows)
+		    // If it's bigger than the max, update the max
+            foreach (DatabaseRow row in inputAsDatabaseRows)
 			{
 			    for (int i = 0; i < row.data.Length; i++)
 			    {
@@ -33,7 +35,8 @@ namespace TradingBot
                 }
             }
 
-			for (int i = 0; i < inputAsDatabaseRows.Count; i++)
+		    // Set each value to a fraction of the max
+            for (int i = 0; i < inputAsDatabaseRows.Count; i++)
 			{
 			    for (int j = 0; j < inputAsDatabaseRows[i].data.Length; j++)
 			    {
@@ -41,6 +44,7 @@ namespace TradingBot
                 }
             }
 
+            // Moves the array, kinda superfluous at the moment.
 			double[,] input = new double[inputAsDatabaseRows.Count, inputAsDatabaseRows[0].data.Length];
 			for (int i = 0; i < inputAsDatabaseRows.Count; i++)
 			{
@@ -53,6 +57,7 @@ namespace TradingBot
 			xTrain = new double[thirdLength * 2, inputAsDatabaseRows[0].data.Length];
 			xTest = new double[thirdLength, inputAsDatabaseRows[0].data.Length];
 
+            // Puts the values in the Train and Test data
 			for (int i = 0; i < inputAsDatabaseRows.Count; i++)
 			{
 				if (i < thirdLength * 2)
