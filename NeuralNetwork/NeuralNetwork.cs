@@ -182,5 +182,89 @@ namespace TradingBot
 
 		    return 0.00000000001;
 		}
+
+	    double Forward(double[] input)
+	    {
+	        double[] saveData = new double[7];
+
+            // Save current data in array in case it's important
+	        foreach (Neuron n in Neurons)
+	        {
+	            if (n.Layer == 1)
+	            {
+	                if (n.Height == 1)
+	                    saveData[0] = n.OutValue;
+	                if (n.Height == 2)
+	                    saveData[1] = n.OutValue;
+	                if (n.Height == 3)
+	                    saveData[2] = n.OutValue;
+	                if (n.Height == 4)
+	                    saveData[3] = n.OutValue;
+	                if (n.Height == 5)
+	                    saveData[4] = n.OutValue;
+	                if (n.Height == 6)
+	                    saveData[5] = n.OutValue;
+	                if (n.Height == 7)
+	                    saveData[6] = n.OutValue;
+                }
+	        }
+
+            // Set neurons to input data
+	        foreach (Neuron n in Neurons)
+	        {
+	            if (n.Layer == 1)
+	            {
+	                if (n.Height == 1)
+	                    n.InValue = new double[] { input[0] };
+	                if (n.Height == 2)
+	                    n.InValue = new double[] { input[1] };
+	                if (n.Height == 3)
+	                    n.InValue = new double[] { input[2] };
+	                if (n.Height == 4)
+	                    n.InValue = new double[] { input[3] };
+	                if (n.Height == 5)
+	                    n.InValue = new double[] { input[4] };
+	                if (n.Height == 6)
+	                    n.InValue = new double[] { input[5] };
+	                if (n.Height == 7)
+	                    n.InValue = new double[] { input[6] };
+	            }
+	        }
+
+	        Forward();
+	        double output;
+	        foreach (Neuron n in Neurons)
+	        {
+	            if (n.Layer == 3)
+	            {
+	                n.Propogate();
+	                output = n.OutValue;
+	            }
+	        }
+
+            // Put the data back
+            foreach (Neuron n in Neurons)
+	        {
+	            if (n.Layer == 1)
+	            {
+	                if (n.Height == 1)
+	                    n.OutValue = saveData[0];
+                    if (n.Height == 2)
+                        n.OutValue = saveData[1];
+                    if (n.Height == 3)
+                        n.OutValue = saveData[2];
+                    if (n.Height == 4)
+                        n.OutValue = saveData[3];
+                    if (n.Height == 5)
+                        n.OutValue = saveData[4];
+                    if (n.Height == 6)
+                        n.OutValue = saveData[5];
+                    if (n.Height == 7)
+                        n.OutValue = saveData[6];
+                }
+	        }
+
+	        return output;
+	    }
     }
 }
