@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Xml.Schema;
 using TradingLib;
 
 namespace TradingBot
@@ -45,7 +46,7 @@ namespace TradingBot
             }
 
             // Moves the array, kinda superfluous at the moment.
-			double[,] input = new double[inputAsDatabaseRows.Count, inputAsDatabaseRows[0].data.Length];
+			double[,] input = new double[inputAsDatabaseRows.Count, inputAsDatabaseRows[0].data.Length + 1];
 			for (int i = 0; i < inputAsDatabaseRows.Count; i++)
 			{
 			    for (int j = 0; j < inputAsDatabaseRows[i].data.Length; j++)
@@ -54,8 +55,16 @@ namespace TradingBot
 			    }
             }
 
-			xTrain = new double[thirdLength * 2, inputAsDatabaseRows[0].data.Length];
-			xTest = new double[thirdLength, inputAsDatabaseRows[0].data.Length];
+            // Add scoring variable
+            // This will break if the price goes over 2x in 30 seconds - quite unlikely.
+		    for (int i = 1; i < inputAsDatabaseRows.Count; i++)
+		    {
+		        double rawscore = input[i, 1] / input[i - 1, 1];
+		        input[i, inputAsDatabaseRows[0].data.Length] = rawscore / 2;
+		    }
+
+            xTrain = new double[thirdLength * 2, inputAsDatabaseRows[0].data.Length + 1];
+			xTest = new double[thirdLength, inputAsDatabaseRows[0].data.Length + 1];
 
             // Puts the values in the Train and Test data
 			for (int i = 0; i < inputAsDatabaseRows.Count; i++)
@@ -75,6 +84,8 @@ namespace TradingBot
                     }
 				}
 			}
+
+
 		}
 	}
 }
