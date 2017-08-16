@@ -49,6 +49,7 @@ namespace TradingBot
         {
             double BTCBalance = inputBTC;
             double ETHBalance = 0;
+            double fullBalanceInBTC = inputBTC;
 
             for (int i = 0; i < rows.Count; i++)
             {
@@ -62,7 +63,7 @@ namespace TradingBot
             {
                 double netOutput = ANN.Forward(row.data);
 
-                double fullBalanceInBTC = BTCBalance + ETHBalance * row.data[1];
+                fullBalanceInBTC = BTCBalance + ETHBalance * row.data[1];
 
                 double ETHBalanceInBTC = netOutput * fullBalanceInBTC;
 
@@ -71,7 +72,7 @@ namespace TradingBot
                 ETHBalance = ETHBalanceInBTC / row.data[1];
             }
 
-            return 0;
+            return fullBalanceInBTC;
         }
 
         static void WriteWeights(List<double> weights)

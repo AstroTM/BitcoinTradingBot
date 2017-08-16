@@ -153,7 +153,12 @@ namespace TradingBot
 
 	        for (int i = 0; i < X.Length / 8; i++)
 	        {
-	            double output = Forward(); // Propogate network
+	            double[] input =
+	            {
+	                X[i, 0], X[i, 1], X[i, 2], X[i, 3], X[i, 4], X[i, 5], X[i, 6], X[i, 7]
+                };
+
+	            double output = Forward(input); // Propogate network
 
 	            double e = Math.Abs(output - X[i, 7]); // Difference between yHat and y
 
@@ -211,6 +216,7 @@ namespace TradingBot
             #endregion
             
 		    #region a2Propogate
+            /**
 		    foreach (Synapse s in Synapses)
 		    {
 		        if (s.Layer == 1)
@@ -223,7 +229,21 @@ namespace TradingBot
 		                }
 		            }
 		        }
-		    }
+		    }**/
+
+		    foreach (Neuron n in Neurons)
+		    {
+		        if (n.Layer == 2) // If it's in the hidden layer
+		        {
+		            foreach (Synapse s in Synapses)
+		            {
+		                if (s.Layer == 1 && s.OutNeuron == n.Height)
+		                {
+		                    n.InValue[s.InNeuron - 1] = s.OutValue;
+		                }
+		            }
+                }
+            }
 
 		    foreach (Neuron n in Neurons)
 		    {

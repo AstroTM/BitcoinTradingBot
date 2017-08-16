@@ -11,7 +11,7 @@ namespace TradingBot
 
 	    static public double[] max =
 	    {
-	        2147483647, 0.08, 2000, 2000, 1, 0.1
+	        2147483647, 0.08, 2000, 2000, 100, 0.1, 250
 	    };
 
 		public InputData(List<DatabaseRow> inputAsDatabaseRows)
@@ -40,7 +40,7 @@ namespace TradingBot
 		    // Set each value to a fraction of the max
             for (int i = 0; i < inputAsDatabaseRows.Count; i++)
 			{
-			    for (int j = 0; j < inputAsDatabaseRows[i].data.Length - 1; j++)
+			    for (int j = 0; j < inputAsDatabaseRows[i].data.Length; j++)
 			    {
 			       inputAsDatabaseRows[i].data[j] = inputAsDatabaseRows[i].data[j] / max[j];
                 }
