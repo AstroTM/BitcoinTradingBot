@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 using System.Xml.XPath;
 using TradingLib;
@@ -70,6 +71,17 @@ namespace TradingBot
 
 		    for (int i = 0; i < TrainLength; i++)
 		    {
+		        if (i % 10 == 0)
+		        {
+		            List<double> weights = new List<double>();
+		            for (int j = 0; j < Synapses.Count; j++)
+		            {
+		                weights.Add(Synapses[j].Weight);
+		            }
+
+                    WriteWeights(weights);
+                }
+
 		        double prevCost = Cost(X);
 
                 double[,] improvments = new double[Synapses.Count, 2];
@@ -112,12 +124,30 @@ namespace TradingBot
             }
 
             Console.WriteLine(Cost(X));
-		}
+	    }
 
+	    static void WriteWeights(List<double> weights)
+	    {
+	        string WeightSaveString = @"C:\Users\matth\OneDrive\Documents\Visual Studio 2017\Projects\TradingBot\weights.txt";
 
+	        if (File.Exists(WeightSaveString))
+	        {
+	            // Delete file
+	            File.Delete(WeightSaveString);
+	        }
+
+	        using (System.IO.StreamWriter file =
+	            new System.IO.StreamWriter(WeightSaveString))
+	        {
+	            foreach (double weight in weights)
+	            {
+	                file.WriteLine(weight);
+	            }
+	        }
+	    }
 
         // Calculates how accurate network currently is
-	    double Cost(InputData X)
+        double Cost(InputData X)
 	    {
 	        double cost = 0;
 
@@ -139,7 +169,7 @@ namespace TradingBot
                 cost += (e * e) / 2; // 1/2 * e^2
 	        }
 
-	        return cost;
+	        return cost / X.xTest.Length / 8 * 3;
 	    }
 
         // Gradient of a sigmoid
@@ -157,7 +187,7 @@ namespace TradingBot
 	        for (int i = 0; i < columns; ++i)
 	            array[i] = matrix[row, i];
 	        return array;
-	    }
+        }
 
         double Forward()
 		{
