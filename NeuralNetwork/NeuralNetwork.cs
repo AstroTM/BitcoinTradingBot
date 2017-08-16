@@ -82,18 +82,18 @@ namespace TradingBot
                     WriteWeights(weights);
                 }
 
-		        double prevCost = Cost(X);
+		        double prevCost = TrainCost(X);
 
                 double[,] improvments = new double[Synapses.Count, 2];
 		        Parallel.For(0, Synapses.Count, j =>
 		        {
 		            Synapses[j].Weight += 0.1;
 
-		            improvments[j, 0] = prevCost - Cost(X);
+		            improvments[j, 0] = prevCost - TrainCost(X);
 
 		            Synapses[j].Weight -= 0.2;
 
-		            improvments[j, 1] = prevCost - Cost(X);
+		            improvments[j, 1] = prevCost - TrainCost(X);
 
 		            Synapses[j].Weight += 0.1;
 		        });
@@ -115,7 +115,7 @@ namespace TradingBot
                     }
                 }
 
-                Console.WriteLine("Row " + i + ", Biggest improvement: " + x + ":" + y + ", " + Cost(X));
+                Console.WriteLine("Row " + i + ", Biggest improvement: " + x + ":" + y + ", " + TrainCost(X));
 
 		        if (y == 0)
 		            Synapses[x].Weight += 0.01;
@@ -123,10 +123,10 @@ namespace TradingBot
 		            Synapses[x].Weight -= 0.01;
             }
 
-            Console.WriteLine(Cost(X));
+            Console.WriteLine(TestCost(X));
 	    }
 
-	    static void WriteWeights(List<double> weights)
+        static void WriteWeights(List<double> weights)
 	    {
 	        string WeightSaveString = @"C:\Users\matth\OneDrive\Documents\Visual Studio 2017\Projects\TradingBot\weights.txt";
 
@@ -146,34 +146,37 @@ namespace TradingBot
 	        }
 	    }
 
-        // Calculates how accurate network currently is
-        double Cost(InputData X)
+	    // Calculates how accurate network currently is
+	    private double Cost(double[,] X)
 	    {
 	        double cost = 0;
 
-	        for (int i = 0; i < X.xTrain.Length / 8; i++)
+	        for (int i = 0; i < X.Length / 8; i++)
 	        {
 	            double output = Forward(); // Propogate network
 
-	            double e = Math.Abs(output - X.xTrain[i, 7]); // Difference between yHat and y
+	            double e = Math.Abs(output - X[i, 7]); // Difference between yHat and y
 
-                cost += (e * e) / 2; // 1/2 * e^2
-            }
-
-	        for (int i = 0; i < X.xTest.Length / 8; i++)
-	        {
-	            double output = Forward(); // Propogate network
-
-                double e = Math.Abs(output - X.xTest[i, 7]); // Difference between yHat and y
-
-                cost += (e * e) / 2; // 1/2 * e^2
+	            cost += (e * e) / 2; // 1/2 * e^2
 	        }
 
-	        return cost / X.xTest.Length / 8 * 3;
+	        return cost / X.Length / 8 * 3;
+	    }
+
+	    // Runs cost method on train data
+	    private double TrainCost(InputData X)
+	    {
+	        return Cost(X.xTrain);
+	    }
+
+	    // Runs cost method on train data
+	    private double TestCost(InputData X)
+	    {
+	        return Cost(X.xTest);
 	    }
 
         // Gradient of a sigmoid
-	    double SigmoidPrime(double z)
+        double SigmoidPrime(double z)
 	    {
 	        double exp = Math.Exp(-z);
 	        double tmp = Math.Pow((1 + exp), 2);
@@ -273,7 +276,7 @@ namespace TradingBot
 		    throw new Exception("Output neuron cannot be found.");
 		}
 
-	    double Forward(double[] input)
+	    public double Forward(double[] input)
 	    {
 	        double[] saveData = new double[7];
 
@@ -305,7 +308,6 @@ namespace TradingBot
 	        {
 	            if (n.Layer == 3)
 	            {
-	                n.Propogate();
 	                output = n.OutValue;
 	            }
 	        }

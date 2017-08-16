@@ -9,12 +9,13 @@ namespace TradingBot
 		public double[,] xTrain;
 		public double[,] xTest;
 
-	    public double[] max;
+	    static public double[] max =
+	    {
+	        2147483647, 0.08, 2000, 2000, 1, 0.1
+	    };
 
 		public InputData(List<DatabaseRow> inputAsDatabaseRows)
 		{
-            max = new double[inputAsDatabaseRows[0].data.Length];
-		    max[0] = 2147483647;
 
             // Makes sure number of inputs is a multiple of 3, so that it splits into arrays neatly.
             if (inputAsDatabaseRows.Count % 3 == 1) inputAsDatabaseRows.RemoveAt(0);
@@ -28,20 +29,20 @@ namespace TradingBot
             int thirdLength = inputAsDatabaseRows.Count / 3;
 
 		    // If it's bigger than the max, update the max
-            foreach (DatabaseRow row in inputAsDatabaseRows)
-			{
-			    for (int i = 0; i < row.data.Length; i++)
-			    {
-			        if (row.data[i] > max[i]) max[i] = row.data[i];
-                }
-            }
+            //foreach (DatabaseRow row in inputAsDatabaseRows)
+			//{
+			//    for (int i = 0; i < row.data.Length; i++)
+			//    {
+			//        if (row.data[i] > max[i]) max[i] = row.data[i];
+            //    }
+            //}
 
 		    // Set each value to a fraction of the max
             for (int i = 0; i < inputAsDatabaseRows.Count; i++)
 			{
-			    for (int j = 0; j < inputAsDatabaseRows[i].data.Length; j++)
+			    for (int j = 0; j < inputAsDatabaseRows[i].data.Length - 1; j++)
 			    {
-			        inputAsDatabaseRows[i].data[j] = inputAsDatabaseRows[i].data[j] / max[j];
+			       inputAsDatabaseRows[i].data[j] = inputAsDatabaseRows[i].data[j] / max[j];
                 }
             }
 
@@ -60,7 +61,8 @@ namespace TradingBot
 		    for (int i = 0; i < inputAsDatabaseRows.Count - 1; i++)
 		    {
 		        double rawscore = input[i + 1, 1] / input[i, 1];
-		        input[i, inputAsDatabaseRows[0].data.Length] = rawscore / 2;
+		        rawscore = (rawscore / 2) * 64 - 31.5;
+                input[i, inputAsDatabaseRows[0].data.Length] = rawscore;
 		    }
 
             xTrain = new double[thirdLength * 2, inputAsDatabaseRows[0].data.Length + 1];
@@ -84,8 +86,6 @@ namespace TradingBot
                     }
 				}
 			}
-
-
 		}
 	}
 }

@@ -14,6 +14,7 @@ namespace TradingBot
     {
         private static ApiReader APR;
         private static DatabaseConnector DBC;
+        private static NeuralNetwork ANN;
 
         /// <summary>
         /// The main entry point for the application.
@@ -23,13 +24,13 @@ namespace TradingBot
             APR = new ApiReader(); // Initialises ApiReader
             DBC = new DatabaseConnector(); // Initialises DatabaseConnector
 
-            NeuralNetwork ANN = new NeuralNetwork();
+            ANN = new NeuralNetwork();
 
             ANN.ImportWeights(ReadWeights());
 
             List<DatabaseRow> rows = DBC.SelectAllFromDatabase();
 
-            ANN.TrainNetwork(rows, 1000);
+            //ANN.TrainNetwork(rows, 1000);
 
             List<double> weights = new List<double>();
             for (int i = 0; i < ANN.Synapses.Count; i++)
@@ -39,7 +40,38 @@ namespace TradingBot
 
             WriteWeights(weights);
 
+            double output = TestNetwork(rows, 1);
+
             Console.ReadLine();
+        }
+
+        static double TestNetwork(List<DatabaseRow> rows, double inputBTC)
+        {
+            double BTCBalance = inputBTC;
+            double ETHBalance = 0;
+
+            for (int i = 0; i < rows.Count; i++)
+            {
+                for (int j = 0; j < InputData.max.Length; j++)
+                {
+                    rows[i].data[j] = rows[i].data[j] / InputData.max[j];
+                }
+            }
+
+            foreach (var row in rows)
+            {
+                double netOutput = ANN.Forward(row.data);
+
+                double fullBalanceInBTC = BTCBalance + ETHBalance * row.data[1];
+
+                double ETHBalanceInBTC = netOutput * fullBalanceInBTC;
+
+                BTCBalance = fullBalanceInBTC - ETHBalanceInBTC;
+                
+                ETHBalance = ETHBalanceInBTC / row.data[1];
+            }
+
+            return 0;
         }
 
         static void WriteWeights(List<double> weights)
