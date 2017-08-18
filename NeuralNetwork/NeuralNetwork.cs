@@ -88,12 +88,31 @@ namespace TradingBot
                     }
                 }
 
-                Console.WriteLine("Row " + i + ", Biggest improvement: " + x + ":" + y + ", " + TrainCost(X));
+		        if (improvments[x, y] < 0)
+		        {
+		            Console.WriteLine("All done. Either give me more data or reset weights.");
+		            break;
+		        }
 
-		        if (y == 0)
-		            Synapses[x].Weight += 0.01;
-		        if (y == 1)
-		            Synapses[x].Weight -= 0.01;
+		        double bestCost = 1000000;
+		        for (double j = -1; j <= 1; j += 0.1)
+		        {
+		            double oldWeight = Synapses[x].Weight;
+                    Synapses[x].Weight = j;
+		            if (TrainCost(X) < bestCost)
+		            {
+		                bestCost = TrainCost(X);
+		            }
+		            else
+		            {
+		                Synapses[x].Weight = oldWeight;
+		            }
+		        }
+
+		        double newWeight = 0;
+
+
+		        Console.WriteLine("Row " + i + ", Biggest improvement: " + x + ":" + y + ", " + TrainCost(X) + " (" + (prevCost - TrainCost(X)) + ")");
             }
 
             Console.WriteLine(TestCost(X));
@@ -138,8 +157,8 @@ namespace TradingBot
 	            cost += (e * e) / 2; // 1/2 * e^2
 	        }
 
-	        //return cost / X.Length / 8 * 3;
-            return cost;
+	        return cost / X.Length / 8 * 1000;
+            //return cost;
         }
 
 	    // Runs cost method on train data
