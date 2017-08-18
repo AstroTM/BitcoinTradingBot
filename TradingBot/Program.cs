@@ -30,6 +30,8 @@ namespace TradingBot
 
             List<DatabaseRow> rows = DBC.SelectAllFromDatabase();
 
+            //ANN.TimeNetwork(rows);
+
             ANN.TrainNetwork(rows, 10000);
 
             List<double> weights = new List<double>();

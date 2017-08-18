@@ -46,9 +46,11 @@ namespace TradingBot
             Stopwatch s = new Stopwatch();
             s.Start();
             // 10^16 times
-            Parallel.For(0, 10000000000000000, j =>
+            Parallel.For(0, 10000, j =>
 	        {
-	            TrainCost(X);
+                //if(j % 10000000 == 0)
+                //    Console.WriteLine(j);
+                TrainCost(X);
 	        });
             s.Stop();
             Console.WriteLine(s.ElapsedMilliseconds/1000 + "s.");
