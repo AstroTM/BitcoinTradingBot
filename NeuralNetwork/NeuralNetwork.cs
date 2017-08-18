@@ -348,9 +348,16 @@ namespace TradingBot
 
 	    public void ImportWeights(List<double> weights)
 	    {
-	        for (int i = 0; i < weights.Count; i++)
+	        try
 	        {
-	            Synapses[i].Weight = weights[i];
+	            for (int i = 0; i < weights.Count; i++)
+	            {
+	                Synapses[i].Weight = weights[i];
+	            }
+            }
+	        catch (NullReferenceException e)
+	        {
+	            Console.WriteLine("No weights found at file. Generating new.");
 	        }
 	    }
 	}

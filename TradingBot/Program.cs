@@ -102,9 +102,16 @@ namespace TradingBot
             string WeightSaveString = @"C:\Users\matth\OneDrive\Documents\Visual Studio 2017\Projects\TradingBot\weights.txt";
             List<double> output = new List<double>();
 
-            foreach(string line in File.ReadLines(WeightSaveString))
+            try
             {
-                output.Add(Convert.ToDouble(line));
+                foreach (string line in File.ReadLines(WeightSaveString))
+                {
+                    output.Add(Convert.ToDouble(line));
+                }
+            }
+            catch(FileNotFoundException e)
+            {
+                return null;
             }
 
             return output;
