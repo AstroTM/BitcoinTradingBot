@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
 using System.Xml.XPath;
@@ -37,6 +38,21 @@ namespace TradingBot
 				for (int j = 1; j <= OutputLayerSize; j++)
 					Synapses.Add(new Synapse(2, i, j));
 		}
+
+	    public void TimeNetwork(List<DatabaseRow> inputAsDatabaseRows)
+	    {
+	        InputData X = new InputData(inputAsDatabaseRows);
+
+            Stopwatch s = new Stopwatch();
+            s.Start();
+            // 10^16 times
+            Parallel.For(0, 10000000000000000, j =>
+	        {
+	            TrainCost(X);
+	        });
+            s.Stop();
+            Console.WriteLine(s.ElapsedMilliseconds/1000 + "s.");
+        }
 
 		public void TrainNetwork(List<DatabaseRow> inputAsDatabaseRows, int TrainLength)
 		{
