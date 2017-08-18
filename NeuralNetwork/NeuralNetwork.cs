@@ -42,33 +42,6 @@ namespace TradingBot
 		{
 			InputData X = new InputData(inputAsDatabaseRows);
 
-            // Set input neurons
-			for (int i = 0; i < X.xTrain.Length / 8; i++)
-			{
-				foreach (Neuron n in Neurons)
-				{
-					if (n.Layer == 1)
-					{
-					    if (n.Height == 1)
-					        n.InValue = new double[] { X.xTrain[i, 0] };
-					    if (n.Height == 2)
-					        n.InValue = new double[] { X.xTrain[i, 1] };
-					    if (n.Height == 3)
-					        n.InValue = new double[] { X.xTrain[i, 2] };
-					    if (n.Height == 4)
-					        n.InValue = new double[] { X.xTrain[i, 3] };
-					    if (n.Height == 5)
-					        n.InValue = new double[] { X.xTrain[i, 4] };
-					    if (n.Height == 6)
-					        n.InValue = new double[] { X.xTrain[i, 5] };
-					    if (n.Height == 7)
-					        n.InValue = new double[] { X.xTrain[i, 6] };
-                    }
-				}
-
-				double output = Forward();
-			}
-
 		    for (int i = 0; i < TrainLength; i++)
 		    {
 		        if (i % 10 == 0)
@@ -165,8 +138,9 @@ namespace TradingBot
 	            cost += (e * e) / 2; // 1/2 * e^2
 	        }
 
-	        return cost / X.Length / 8 * 3;
-	    }
+	        //return cost / X.Length / 8 * 3;
+            return cost;
+        }
 
 	    // Runs cost method on train data
 	    private double TrainCost(InputData X)
@@ -337,7 +311,7 @@ namespace TradingBot
 
 	    public void ImportWeights(List<double> weights)
 	    {
-	        for (int i = 0; i < Synapses.Count; i++)
+	        for (int i = 0; i < weights.Count; i++)
 	        {
 	            Synapses[i].Weight = weights[i];
 	        }

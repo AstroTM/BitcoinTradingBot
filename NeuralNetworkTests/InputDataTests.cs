@@ -26,35 +26,35 @@ namespace TradingBot.Tests
 
 	        InputData data = new InputData(input);
 
-	        Assert.AreEqual(data.xTrain[0, 0], 2.0 / 2147483647.0);
-	        Assert.AreEqual(data.xTrain[0, 1], 0.2 / 0.7);
-	        Assert.AreEqual(data.xTrain[0, 2], 0.02 / 0.07);
-	        Assert.AreEqual(data.xTrain[0, 3], 0.002 / 0.007);
+	        Assert.AreEqual(data.xTrain[0, 0], 2.0 / InputData.max[0]);
+	        Assert.AreEqual(data.xTrain[0, 1], 0.2 / InputData.max[1]);
+	        Assert.AreEqual(data.xTrain[0, 2], 0.02 / InputData.max[2]);
+	        Assert.AreEqual(data.xTrain[0, 3], 0.002 / InputData.max[3]);
 
-	        Assert.AreEqual(data.xTrain[1, 0], 3.0 / 2147483647.0);
-	        Assert.AreEqual(data.xTrain[1, 1], 0.3 / 0.7);
-	        Assert.AreEqual(data.xTrain[1, 2], 0.03 / 0.07, 0.000001);
-	        Assert.AreEqual(data.xTrain[1, 3], 0.003 / 0.007, 0.000001);
+	        Assert.AreEqual(data.xTrain[1, 0], 3.0 / InputData.max[0]);
+	        Assert.AreEqual(data.xTrain[1, 1], 0.3 / InputData.max[1]);
+	        Assert.AreEqual(data.xTrain[1, 2], 0.03 / InputData.max[2], 0.000001);
+	        Assert.AreEqual(data.xTrain[1, 3], 0.003 / InputData.max[3], 0.000001);
 
-	        Assert.AreEqual(data.xTrain[2, 0], 4.0 / 2147483647.0);
-	        Assert.AreEqual(data.xTrain[2, 1], 0.4 / 0.7);
-	        Assert.AreEqual(data.xTrain[2, 2], 0.04 / 0.07);
-	        Assert.AreEqual(data.xTrain[2, 3], 0.004 / 0.007);
+	        Assert.AreEqual(data.xTrain[2, 0], 4.0 / InputData.max[0]);
+	        Assert.AreEqual(data.xTrain[2, 1], 0.4 / InputData.max[1]);
+	        Assert.AreEqual(data.xTrain[2, 2], 0.04 / InputData.max[2]);
+	        Assert.AreEqual(data.xTrain[2, 3], 0.004 / InputData.max[3]);
 
-	        Assert.AreEqual(data.xTrain[3, 0], 5.0 / 2147483647.0);
-	        Assert.AreEqual(data.xTrain[3, 1], 0.5 / 0.7);
-	        Assert.AreEqual(data.xTrain[3, 2], 0.05 / 0.07);
-	        Assert.AreEqual(data.xTrain[3, 3], 0.005 / 0.007);
+	        Assert.AreEqual(data.xTrain[3, 0], 5.0 / InputData.max[0]);
+	        Assert.AreEqual(data.xTrain[3, 1], 0.5 / InputData.max[1]);
+	        Assert.AreEqual(data.xTrain[3, 2], 0.05 / InputData.max[2]);
+	        Assert.AreEqual(data.xTrain[3, 3], 0.005 / InputData.max[3]);
 
-	        Assert.AreEqual(data.xTest[0, 0], 6.0 / 2147483647.0);
-	        Assert.AreEqual(data.xTest[0, 1], 0.6 / 0.7);
-	        Assert.AreEqual(data.xTest[0, 2], 0.06 / 0.07, 0.000001);
-	        Assert.AreEqual(data.xTest[0, 3], 0.006 / 0.007, 0.000001);
+	        Assert.AreEqual(data.xTest[0, 0], 6.0 / InputData.max[0]);
+	        Assert.AreEqual(data.xTest[0, 1], 0.6 / InputData.max[1]);
+	        Assert.AreEqual(data.xTest[0, 2], 0.06 / InputData.max[2], 0.000001);
+	        Assert.AreEqual(data.xTest[0, 3], 0.006 / InputData.max[3], 0.000001);
 
-	        Assert.AreEqual(data.xTest[1, 0], 7.0 / 2147483647.0);
-	        Assert.AreEqual(data.xTest[1, 1], 0.7 / 0.7);
-	        Assert.AreEqual(data.xTest[1, 2], 0.07 / 0.07);
-	        Assert.AreEqual(data.xTest[1, 3], 0.007 / 0.007);
+	        Assert.AreEqual(data.xTest[1, 0], 7.0 / InputData.max[0]);
+	        Assert.AreEqual(data.xTest[1, 1], 0.7 / InputData.max[1]);
+	        Assert.AreEqual(data.xTest[1, 2], 0.07 / InputData.max[2]);
+	        Assert.AreEqual(data.xTest[1, 3], 0.007 / InputData.max[3]);
 	    }
 
 	    [TestMethod()]
@@ -67,8 +67,8 @@ namespace TradingBot.Tests
 
 	        InputData data = new InputData(input);
 
-	        Assert.AreEqual(0.55, data.xTrain[0, 7]);
-	        Assert.AreEqual(0.45454545454545453, data.xTrain[1, 7]);
+	        Assert.AreEqual(1, data.xTrain[0, 7]);
+	        Assert.AreEqual(0, data.xTrain[1, 7]);
 	        Assert.AreEqual(0, data.xTest[0, 7]);
         }
     }

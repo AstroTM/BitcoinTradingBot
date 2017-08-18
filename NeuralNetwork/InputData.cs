@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Xml.Schema;
 using TradingLib;
 
@@ -61,8 +62,13 @@ namespace TradingBot
 		    for (int i = 0; i < inputAsDatabaseRows.Count - 1; i++)
 		    {
 		        double rawscore = input[i + 1, 1] / input[i, 1];
-		        rawscore = (rawscore / 2) * 64 - 31.5;
+		        rawscore = (rawscore / 2) * 256 - 127.5;
+		        if (rawscore > 1)
+		            rawscore = 1;
+		        if (rawscore < 0)
+		            rawscore = 0;
                 input[i, inputAsDatabaseRows[0].data.Length] = rawscore;
+		        //Console.WriteLine(rawscore);
 		    }
 
             xTrain = new double[thirdLength * 2, inputAsDatabaseRows[0].data.Length + 1];

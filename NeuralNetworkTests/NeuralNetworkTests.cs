@@ -19,7 +19,7 @@ namespace TradingBot.Tests
             double[] input = { 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 };
             double output = ANN.Forward(input);
 
-            Assert.AreEqual(0.99785, Math.Round(output, 5));
+            Assert.AreEqual(0.998, Math.Round(output, 3));
         }
 
         [TestMethod()]
